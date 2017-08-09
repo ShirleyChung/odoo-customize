@@ -1,6 +1,6 @@
 module,type,name,res_id,src,value,comments
 account,model,"mail.template,body_html",account.email_template_edi_invoice,"
-<p>親愛的 ${object.partner_id.name}
+<p>Dear ${object.partner_id.name}
 % set access_action = object.get_access_action()
 % set access_url = access_action['type'] == 'ir.actions.act_url' and access_action['url'] or '/report/pdf/account.report_invoice/' + str(object.id)
 % set is_online = access_action and access_action['type'] == 'ir.actions.act_url'
@@ -9,7 +9,7 @@ account,model,"mail.template,body_html",account.email_template_edi_invoice,"
     (<i>${object.partner_id.parent_id.name}</i>)
 % endif
 ,</p>
-<p>這是您的發票 <strong>${object.number}</strong>
+<p>Here is your invoice <strong>${object.number}</strong>
 % if object.origin:
 (with reference: ${object.origin} )
 % endif
@@ -31,7 +31,7 @@ from ${object.company_id.name}.
     <p>Please remit payment at your earliest convenience.</p>
 % endif
 
-<p>感謝您,</p>
+<p>Thank you,</p>
 % if object.user_id and object.user_id.signature:
     ${object.user_id.signature | safe}
 % endif
@@ -45,7 +45,7 @@ from ${object.company_id.name}.
     (<i>${object.partner_id.parent_id.name}</i>)
 % endif
 ,</p>
-<p>這是您的發票 <strong>${object.number}</strong>
+<p>Here is your invoice <strong>${object.number}</strong>
 % if object.origin:
 (with reference: ${object.origin} )
 % endif
@@ -67,7 +67,7 @@ from ${object.company_id.name}.
     <p>Please remit payment at your earliest convenience.</p>
 % endif
 
-<p>感謝您,</p>
+<p>Thank you,</p>
 % if object.user_id and object.user_id.signature:
     ${object.user_id.signature | safe}
 % endif
@@ -1316,7 +1316,7 @@ account,model,"ir.model.fields,field_description",account.field_product_product_
 account,model,"ir.model.fields,field_description",account.field_product_template_taxes_id,Customer Taxes,客戶稅,
 account,model,"ir.ui.view,arch_db",account.report_overdue_document,Customer ref:,Customer ref:,
 account,code,addons/account/static/src/xml/account_reconciliation.xml,304,Customers,客戶,openerp-web
-account,model,"ir.ui.menu,name",account.menu_account_customer,Customers,Customers,
+account,model,"ir.ui.menu,name",account.menu_account_customer,Customers,客戶,
 account,model,"ir.ui.menu,name",account.menu_board_journal_1,Dashboard,儀表板,
 account,selection,"account.print.journal,sort_selection",0,Date,日期,
 account,selection,"account.report.general.ledger,sortby",0,Date,日期,
@@ -1860,7 +1860,7 @@ account,model,"ir.ui.view,arch_db",account.account_journal_dashboard_kanban_view
 account,model,"ir.model.fields,field_description",account.field_account_account_internal_type,Internal Type,內部類型,
 account,model,"ir.ui.view,arch_db",account.view_account_template_form,Internal notes...,Internal notes...,
 account,code,addons/account/models/partner.py,45,"Invalid ""Zip Range"", please configure it properly.","Invalid ""Zip Range"", please configure it properly.",
-account,model,"ir.ui.view,arch_db",account.account_planner,Invite Users,Invite Users,
+account,model,"ir.ui.view,arch_db",account.account_planner,Invite Users,邀請使用者,
 account,code,addons/account/models/account_invoice.py,971,Invoice,發票,
 account,model,"ir.model,name",account.model_account_invoice,Invoice,發票,
 account,model,"ir.model.fields,field_description",account.field_account_invoice_tax_invoice_id,Invoice,發票,
@@ -2687,19 +2687,19 @@ account,model,"ir.ui.view,arch_db",account.view_account_invoice_filter,Proforma,
 account,code,addons/account/models/account_payment.py,123,Programmation error: the expected model for this action is 'account.invoice'. The provided one is '%d'.,Programmation error: the expected model for this action is 'account.invoice'. The provided one is '%d'.,
 account,code,addons/account/models/account_payment.py,121,Programmation error: wizard action executed without active_model or active_ids in context.,Programmation error: wizard action executed without active_model or active_ids in context.,
 account,model,"ir.ui.view,arch_db",account.view_account_chart_template_form,Properties,Properties,
-account,selection,"account.journal,type",0,Purchase,Purchase,
-account,model,"ir.ui.view,arch_db",account.view_account_config_settings,Purchase,Purchase,
-account,model,"ir.ui.view,arch_db",account.view_account_journal_search,Purchase,Purchase,
-account,model,"ir.ui.view,arch_db",account.view_account_tax_search,Purchase,Purchase,
-account,model,"ir.ui.view,arch_db",account.view_account_tax_template_search,Purchase,Purchase,
-account,model,"ir.ui.view,arch_db",account.view_partner_property_form,Purchase,Purchase,
+account,selection,"account.journal,type",0,Purchase,採購,
+account,model,"ir.ui.view,arch_db",account.view_account_config_settings,Purchase,採購,
+account,model,"ir.ui.view,arch_db",account.view_account_journal_search,Purchase,採購,
+account,model,"ir.ui.view,arch_db",account.view_account_tax_search,Purchase,採購,
+account,model,"ir.ui.view,arch_db",account.view_account_tax_template_search,Purchase,採購,
+account,model,"ir.ui.view,arch_db",account.view_partner_property_form,Purchase,採購,
 account,model,"ir.ui.view,arch_db",account.view_wizard_multi_chart,Purchase Tax,Purchase Tax,
 account,model,"ir.model.fields,field_description",account.field_wizard_multi_charts_accounts_purchase_tax_rate,Purchase Tax(%),Purchase Tax(%),
 account,model,"ir.model.fields,field_description",account.field_account_config_settings_purchase_tax_rate,Purchase tax (%),Purchase tax (%),
-account,selection,"account.tax,type_tax_use",0,Purchases,Purchases,
-account,selection,"account.tax.template,type_tax_use",0,Purchases,Purchases,
+account,selection,"account.tax,type_tax_use",0,Purchases,採購,
+account,selection,"account.tax.template,type_tax_use",0,Purchases,採購,
 account,model,"ir.ui.menu,name",account.menu_finance_payables,Purchases,Purchases,
-account,model,"ir.ui.view,arch_db",account.view_account_move_filter,Purchases,Purchases,
+account,model,"ir.ui.view,arch_db",account.view_account_move_filter,Purchases,採購,
 account,model,"ir.actions.act_window,name",account.action_cash_box_in,Put Money In,Put Money In,
 account,model,"ir.ui.view,arch_db",account.cash_box_in_form,Put Money In,Put Money In,
 account,model,"ir.model.fields,field_description",account.field_account_invoice_line_quantity,Quantity,數量,
@@ -2832,12 +2832,12 @@ account,model,"ir.ui.view,arch_db",account.account_planner,Review the Chart of A
 account,model,"ir.ui.view,arch_db",account.account_planner,Review the list of available currencies (from the,Review the list of available currencies (from the,
 account,selection,"res.company,tax_calculation_rounding_method",0,Round Globally,Round Globally,
 account,selection,"res.company,tax_calculation_rounding_method",0,Round per Line,Round per Line,
-account,selection,"account.journal,type",0,Sale,Sale,
-account,model,"ir.ui.view,arch_db",account.view_account_config_settings,Sale,Sale,
-account,model,"ir.ui.view,arch_db",account.view_account_journal_search,Sale,Sale,
-account,model,"ir.ui.view,arch_db",account.view_account_tax_search,Sale,Sale,
-account,model,"ir.ui.view,arch_db",account.view_account_tax_template_search,Sale,Sale,
-account,model,"ir.ui.view,arch_db",account.view_partner_property_form,Sale,Sale,
+account,selection,"account.journal,type",0,Sale,銷售,
+account,model,"ir.ui.view,arch_db",account.view_account_config_settings,Sale,銷售,
+account,model,"ir.ui.view,arch_db",account.view_account_journal_search,Sale,銷售,
+account,model,"ir.ui.view,arch_db",account.view_account_tax_search,Sale,銷售,
+account,model,"ir.ui.view,arch_db",account.view_account_tax_template_search,Sale,銷售,
+account,model,"ir.ui.view,arch_db",account.view_partner_property_form,Sale,銷售,
 account,model,"ir.ui.view,arch_db",account.view_wizard_multi_chart,Sale Tax,Sale Tax,
 account,model,"ir.actions.act_window,name",account.action_account_print_journal_menu,Sale/Purchase Journal,Sale/Purchase Journal,
 account,model,"ir.actions.report.xml,name",account.action_report_journal,Sale/Purchase Journal,Sale/Purchase Journal,
@@ -3952,12 +3952,12 @@ barcodes,model,"ir.model.fields,help",barcodes.field_barcode_rule_name,An intern
 barcodes,model,"ir.model.fields,help",barcodes.field_barcode_nomenclature_name,An internal identification of the barcode nomenclature,An internal identification of the barcode nomenclature,
 barcodes,code,addons/barcodes/models/barcodes.py,177,Any,Any,
 barcodes,selection,"barcode.rule,encoding",0,Any,Any,
-barcodes,model,"ir.model.fields,field_description",barcodes.field_barcode_rule_barcode_nomenclature_id,Barcode Nomenclature,Barcode Nomenclature,
-barcodes,model,"ir.ui.view,arch_db",barcodes.view_barcode_nomenclature_form,Barcode Nomenclature,Barcode Nomenclature,
-barcodes,model,"ir.actions.act_window,name",barcodes.action_barcode_nomenclature_form,Barcode Nomenclatures,Barcode Nomenclatures,
-barcodes,model,"ir.ui.view,arch_db",barcodes.view_barcode_nomenclature_tree,Barcode Nomenclatures,Barcode Nomenclatures,
+barcodes,model,"ir.model.fields,field_description",barcodes.field_barcode_rule_barcode_nomenclature_id,Barcode Nomenclature,條碼命名,
+barcodes,model,"ir.ui.view,arch_db",barcodes.view_barcode_nomenclature_form,Barcode Nomenclature,條碼命名,
+barcodes,model,"ir.actions.act_window,name",barcodes.action_barcode_nomenclature_form,Barcode Nomenclatures,條碼命名,
+barcodes,model,"ir.ui.view,arch_db",barcodes.view_barcode_nomenclature_tree,Barcode Nomenclatures,條碼命名,
 barcodes,model,"ir.model.fields,field_description",barcodes.field_barcode_rule_pattern,Barcode Pattern,Barcode Pattern,
-barcodes,model,"ir.ui.view,arch_db",barcodes.view_barcode_rule_form,Barcode Rule,Barcode Rule,
+barcodes,model,"ir.ui.view,arch_db",barcodes.view_barcode_rule_form,Barcode Rule,條碼規則,
 barcodes,model,"ir.model.fields,field_description",barcodes.field_barcodes_barcode_events_mixin__barcode_scanned,Barcode Scanned,Barcode Scanned,
 barcodes,model,"ir.actions.act_window,help",barcodes.action_barcode_nomenclature_form,Click to add a Barcode Nomenclature .,Click to add a Barcode Nomenclature .,
 barcodes,model,"ir.model.fields,field_description",barcodes.field_barcode_nomenclature_create_uid,Created by,建立者,
@@ -5051,7 +5051,7 @@ Chilean accounting chart and tax localization.
 Plan contable chileno e impuestos de acuerdo a disposiciones vigentes
 
     ","
-智利會計科目及稅務在地化。
+Chilean accounting chart and tax localization.
 ==============================================
 Plan contable chileno e impuestos de acuerdo a disposiciones vigentes
 
@@ -7138,7 +7138,7 @@ base,model,"ir.module.module,description",base.module_google_account,"
 The module adds google user in res user.
 ========================================
 ","
-此模組將 Google 使用者加到 res user 中。
+The module adds google user in res user.
 ========================================
 ",
 base,model,"ir.module.module,description",base.module_google_spreadsheet,"
@@ -8640,7 +8640,7 @@ base,model,"ir.module.module,shortdesc",base.module_account_tax_cash_basis,Accou
 base,model,"ir.module.category,name",base.module_category_accounting,Accounting,會計,
 base,model,"ir.module.category,name",base.module_category_accounting_and_finance,Accounting & Finance,會計及財務,
 base,model,"ir.module.module,shortdesc",base.module_account_test,Accounting Consistency Tests,Accounting Consistency Tests,
-base,model,"ir.module.module,shortdesc",base.module_account_accountant,Accounting and Finance,會計及財務,
+base,model,"ir.module.module,shortdesc",base.module_account_accountant,Accounting and Finance,Accounting and Finance,
 base,model,"ir.module.module,description",base.module_l10n_nl,"Accounting chart for Netherlands
 ================================
 
@@ -8933,7 +8933,7 @@ base,code,addons/base/ir/ir_fields.py,378,"Ambiguous specification for field '%(
 base,model,"res.country,name",base.as,American Samoa,美屬薩摩亞,
 base,model,"ir.model.fields,help",base.field_ir_act_client_tag,"An arbitrary string, interpreted by the client according to its own needs and wishes. There is no central tag repository across clients.","An arbitrary string, interpreted by the client according to its own needs and wishes. There is no central tag repository across clients.",
 base,model,"ir.model.fields,help",base.field_ir_module_module_auto_install,"An auto-installable module is automatically installed by the system when all its dependencies are satisfied. If the module has no dependency, it is always installed.","An auto-installable module is automatically installed by the system when all its dependencies are satisfied. If the module has no dependency, it is always installed.",
-base,model,"ir.module.module,shortdesc",base.module_analytic,Analytic Accounting,輔助核算會計,
+base,model,"ir.module.module,shortdesc",base.module_analytic,Analytic Accounting,Analytic Accounting,
 base,selection,"workflow.activity,join_mode",0,And,與,
 base,selection,"workflow.activity,split_mode",0,And,與,
 base,model,"res.country,name",base.ad,"Andorra, Principality of",安道爾公國,
@@ -8981,8 +8981,8 @@ base,model,"ir.model.fields,help",base.field_ir_act_client_params,Arguments sent
 base,model,"ir.model.fields,help",base.field_ir_cron_args,"Arguments to be passed to the method, e.g. (uid,).","Arguments to be passed to the method, e.g. (uid,).",
 base,model,"res.country,name",base.am,Armenia,亞美尼亞,
 base,model,"res.country,name",base.aw,Aruba,阿盧巴島,
-base,model,"ir.module.module,shortdesc",base.module_account_asset,Assets Management,資產管理,
-base,model,"ir.module.module,shortdesc",base.module_association,Associations Management,會務管理,
+base,model,"ir.module.module,shortdesc",base.module_account_asset,Assets Management,Assets Management,
+base,model,"ir.module.module,shortdesc",base.module_association,Associations Management,Associations Management,
 base,model,"ir.module.module,shortdesc",base.module_website_membership,Associations: Members,Associations: Members,
 base,code,addons/base/res/res_lang.py,53,At least one language must be active.,At least one language must be active.,
 base,model,"ir.model.fields,field_description",base.field_ir_act_server_link_new_record,Attach the new record,Attach the new record,
@@ -8997,7 +8997,7 @@ base,model,"ir.ui.view,arch_db",base.view_attachment_search,Attachments,附件,
 base,model,"ir.ui.view,arch_db",base.view_attachment_tree,Attachments,附件,
 base,model,"ir.module.module,shortdesc",base.module_document,Attachments List and Document Indexation,Attachments List and Document Indexation,
 base,model,"ir.module.category,name",base.module_category_hr_attendance,Attendance,Attendance,
-base,model,"ir.module.module,shortdesc",base.module_hr_attendance,Attendances,出席者,
+base,model,"ir.module.module,shortdesc",base.module_hr_attendance,Attendances,Attendances,
 base,model,"res.country,name",base.au,Australia,澳洲,
 base,model,"ir.module.module,shortdesc",base.module_l10n_au,Australian - Accounting,Australian - Accounting,
 base,model,"res.country,name",base.at,Austria,奧地利,
@@ -9009,12 +9009,12 @@ base,model,"ir.ui.view,arch_db",base.module_form,Author Name,Author Name,
 base,model,"ir.module.module,description",base.module_payment_authorize,Authorize.Net Payment Acquirer,Authorize.Net Payment Acquirer,
 base,model,"ir.module.module,shortdesc",base.module_payment_authorize,Authorize.Net Payment Acquirer,Authorize.Net Payment Acquirer,
 base,model,"ir.model.fields,field_description",base.field_ir_act_window_auto_search,Auto search,Auto search,
-base,model,"ir.module.module,shortdesc",base.module_base_action_rule,Automated Action Rules,自動化執行規則,
+base,model,"ir.module.module,shortdesc",base.module_base_action_rule,Automated Action Rules,Automated Action Rules,
 base,model,"ir.module.module,shortdesc",base.module_base_gengo,Automated Translations through Gengo API,Automated Translations through Gengo API,
 base,model,"ir.model.fields,field_description",base.field_ir_module_module_auto_install,Automatic Installation,自動化安裝,
 base,code,addons/base/module/module.py,649,Automatic install of downloaded Apps is currently disabled.,Automatic install of downloaded Apps is currently disabled.,
 base,model,"ir.model.fields,help",base.field_ir_translation_state,Automatically set to let administators find new terms that might need to be translated,Automatically set to let administators find new terms that might need to be translated,
-base,model,"ir.ui.menu,name",base.menu_automation,Automation,Automation,
+base,model,"ir.ui.menu,name",base.menu_automation,Automation,自動化,
 base,model,"res.country,name",base.az,Azerbaijan,亞塞拜然,
 base,model,"res.country,name",base.bs,Bahamas,巴哈馬,
 base,model,"res.country,name",base.bh,Bahrain,巴林,
@@ -9044,11 +9044,11 @@ base,model,"ir.module.module,shortdesc",base.module_hw_scanner,Barcode Scanner H
 base,model,"ir.module.module,shortdesc",base.module_barcodes,Barcodes,Barcodes,
 base,model,"ir.module.module,summary",base.module_barcodes,Barcodes Scanning and Parsing,Barcodes Scanning and Parsing,
 base,model,"ir.module.category,name",base.module_category_base,Base,基礎,
-base,model,"ir.module.module,shortdesc",base.module_base,Base,基礎,
+base,model,"ir.module.module,shortdesc",base.module_base,Base,Base,
 base,model,"ir.ui.view,arch_db",base.view_model_fields_search,Base,基礎,
 base,model,"ir.ui.view,arch_db",base.view_model_search,Base,基礎,
 base,selection,"ir.model.fields,state",0,Base Field,基礎欄位,
-base,model,"ir.module.module,shortdesc",base.module_web_kanban,Base Kanban,基本看板,
+base,model,"ir.module.module,shortdesc",base.module_web_kanban,Base Kanban,Base Kanban,
 base,code,addons/base/res/res_lang.py,236,Base Language 'en_US' can not be deleted!,Base Language 'en_US' can not be deleted!,
 base,model,"ir.model.fields,field_description",base.field_ir_act_server_model_id,Base Model,Base Model,
 base,selection,"ir.model,state",0,Base Object,基礎物件,
@@ -9065,8 +9065,8 @@ base,model,"ir.module.module,shortdesc",base.module_l10n_be_intrastat,Belgian In
 base,model,"res.country,name",base.be,Belgium,比利時,
 base,model,"ir.module.module,shortdesc",base.module_l10n_be,Belgium - Accounting,Belgium - Accounting,
 base,model,"ir.module.module,shortdesc",base.module_l10n_be_hr_payroll,Belgium - Payroll,Belgium - Payroll,
-base,model,"ir.module.module,shortdesc",base.module_l10n_be_hr_payroll_account,Belgium - Payroll with Accounting,比利時 - 薪資（含會計）,
-base,model,"ir.module.module,shortdesc",base.module_l10n_be_invoice_bba,Belgium - Structured Communication,比利時 - 結構化溝通,
+base,model,"ir.module.module,shortdesc",base.module_l10n_be_hr_payroll_account,Belgium - Payroll with Accounting,Belgium - Payroll with Accounting,
+base,model,"ir.module.module,shortdesc",base.module_l10n_be_invoice_bba,Belgium - Structured Communication,Belgium - Structured Communication,
 base,model,"res.country,name",base.bz,Belize,貝里斯,
 base,model,"res.country,name",base.bj,Benin,貝南,
 base,model,"res.country,name",base.bm,Bermuda,百慕大,
@@ -9090,20 +9090,20 @@ base,model,"res.country,name",base.io,British Indian Ocean Territory,英屬印�
 base,model,"res.country,name",base.bn,Brunei Darussalam,汶萊,
 base,model,"ir.module.module,description",base.module_payment_buckaroo,Buckaroo Payment Acquirer,Buckaroo Payment Acquirer,
 base,model,"ir.module.module,shortdesc",base.module_payment_buckaroo,Buckaroo Payment Acquirer,Buckaroo Payment Acquirer,
-base,model,"ir.module.module,shortdesc",base.module_account_budget,Budgets Management,預算管理,
+base,model,"ir.module.module,shortdesc",base.module_account_budget,Budgets Management,Budgets Management,
 base,model,"ir.module.module,summary",base.module_website,Build Your Enterprise Website,Build Your Enterprise Website,
 base,model,"res.country,name",base.bg,Bulgaria,保加利亞,
 base,model,"res.country,name",base.bf,Burkina Faso,布吉納法索,
 base,model,"res.country,name",base.bi,Burundi,蒲隆地,
 base,model,"ir.ui.view,arch_db",base.module_form,By,By,
-base,model,"ir.module.module,shortdesc",base.module_crm,CRM,客戶關係管理,
+base,model,"ir.module.module,shortdesc",base.module_crm,CRM,CRM,
 base,model,"ir.module.module,shortdesc",base.module_gamification_sale_crm,CRM Gamification,CRM Gamification,
 base,selection,"base.language.export,format",0,CSV File,CSV 檔,
 base,model,"ir.ui.view,arch_db",base.wizard_lang_export,"CSV format: you may edit it directly with your favorite spreadsheet software,
                                 the rightmost column (value) contains the translations","CSV format: you may edit it directly with your favorite spreadsheet software,
                                 the rightmost column (value) contains the translations",
 base,selection,"ir.actions.act_window.view,view_mode",0,Calendar,行事曆,
-base,model,"ir.module.module,shortdesc",base.module_calendar,Calendar,行事曆,
+base,model,"ir.module.module,shortdesc",base.module_calendar,Calendar,Calendar,
 base,selection,"ir.ui.view,type",0,Calendar,行事曆,
 base,model,"ir.module.module,summary",base.module_stock_calendar,Calendars ,Calendars ,
 base,model,"ir.module.module,shortdesc",base.module_stock_calendar,Calendars on Orderpoints,Calendars on Orderpoints,
@@ -9126,7 +9126,7 @@ base,model,"ir.ui.view,arch_db",base.view_users_form_simple_modif,Cancel,取消,
 base,model,"ir.ui.view,arch_db",base.wizard_lang_export,Cancel,取消,
 base,model,"ir.ui.view,arch_db",base.wizard_update_translations,Cancel,取消,
 base,model,"ir.ui.view,arch_db",base.module_form,Cancel Install,取消安裝,
-base,model,"ir.module.module,shortdesc",base.module_account_cancel,Cancel Journal Entries,取消日記帳分錄,
+base,model,"ir.module.module,shortdesc",base.module_account_cancel,Cancel Journal Entries,Cancel Journal Entries,
 base,model,"ir.ui.view,arch_db",base.module_form,Cancel Uninstall,取消卸載,
 base,model,"ir.ui.view,arch_db",base.module_form,Cancel Upgrade,取消升級,
 base,code,addons/base/res/res_config.py,399,Cannot duplicate configuration!,無法複製設定！,
@@ -9587,12 +9587,12 @@ base,model,"ir.ui.view,arch_db",base.view_view_custom_tree,Customized Views,自�
 base,model,"ir.actions.act_window,help",base.action_ui_view_custom,Customized views are used when users reorganize the content of their dashboard views (via web client),當用戶（以 web client）重組其 dashboard 檢視即會使用自訂化檢視,
 base,model,"res.country,name",base.cy,Cyprus,賽普勒斯,
 base,model,"res.country,name",base.cz,Czech Republic,捷克,
-base,model,"ir.module.module,shortdesc",base.module_board,Dashboards,儀表板,
+base,model,"ir.module.module,shortdesc",base.module_board,Dashboards,Dashboards,
 base,model,"ir.ui.menu,name",base.menu_board_root,Dashboards,儀表板,
 base,model,"ir.ui.menu,name",base.menu_reporting_dashboard,Dashboards,儀表板,
 base,model,"ir.module.module,description",base.module_test_convert,Data for xml conversion tests,Data for xml conversion tests,
 base,model,"ir.ui.view,arch_db",base.ir_logging_search_view,Database,Database,
-base,model,"ir.module.module,shortdesc",base.module_anonymization,Database Anonymization,資料庫匿名,
+base,model,"ir.module.module,shortdesc",base.module_anonymization,Database Anonymization,Database Anonymization,
 base,model,"ir.model.fields,field_description",base.field_ir_attachment_db_datas,Database Data,資料庫日期,
 base,model,"ir.model.fields,help",base.field_ir_act_window_res_id,"Database ID of record to open in form view, when ``view_mode`` is set to 'form' only",當「檢視模式」僅設為「表單」時，將開啟的紀錄的資料庫 ID,
 base,model,"ir.model.fields,field_description",base.field_ir_logging_dbname,Database Name,Database Name,
@@ -9608,22 +9608,14 @@ base,model,"ir.ui.view,arch_db",base.view_currency_rate_search,Date,日期,
 base,model,"ir.model.fields,field_description",base.field_ir_attachment_create_date,Date Created,建立日期,
 base,model,"ir.model.fields,field_description",base.field_res_lang_date_format,Date Format,日期格式,
 base,selection,"ir.property,type",0,DateTime,日期時間,
-base,model,"ir.module.module,shortdesc",base.module_sale_order_dates,Dates on Sales Order,銷貨單日期,
+base,model,"ir.module.module,shortdesc",base.module_sale_order_dates,Dates on Sales Order,Dates on Sales Order,
 base,model,"ir.ui.view,arch_db",base.ir_logging_search_view,Day,日,
 base,model,"ir.ui.view,arch_db",base.sequence_view,Day of the Week (0:Monday): %(weekday)s,Day of the Week (0:Monday): %(weekday)s,
 base,model,"ir.ui.view,arch_db",base.sequence_view,Day of the Year: %(doy)s,本年度第 %(doy)s 天,
 base,model,"ir.ui.view,arch_db",base.sequence_view,Day: %(day)s,日數：%(day)s,
 base,selection,"ir.cron,interval_type",0,Days,日,
-base,model,"res.company,overdue_msg",base.main_company,"Dear Sir/Madam,
-
-Our records indicate that some payments on your account are still due. Please find details below.
-If the amount has already been paid, please disregard this notice. Otherwise, please forward us the total amount stated below.
-If you have any queries regarding your account, Please contact us.
-
-Thank you in advance for your cooperation.
-Best Regards,",親愛的先生/小姐,
 base,model,"ir.model.fields,field_description",base.field_ir_mail_server_smtp_debug,Debugging,除錯中,
-base,model,"ir.module.module,shortdesc",base.module_decimal_precision,Decimal Precision Configuration,小數精確度設定,
+base,model,"ir.module.module,shortdesc",base.module_decimal_precision,Decimal Precision Configuration,Decimal Precision Configuration,
 base,model,"ir.model.fields,field_description",base.field_res_lang_decimal_point,Decimal Separator,小數分隔符,
 base,model,"ir.model.fields,field_description",base.field_res_currency_decimal_places,Decimal places,Decimal places,
 base,selection,"ir.values,key",0,Default,預設,
@@ -9641,7 +9633,7 @@ base,model,"ir.model.fields,field_description",base.field_ir_model_access_perm_u
 base,model,"ir.ui.view,arch_db",base.view_rule_search,Delete Access Right,刪除存取權限,
 base,code,addons/base/ir/ir_actions.py,216,Deletion of the action record failed.,刪除的動作記錄失敗,
 base,code,addons/base/ir/ir_actions.py,783,Deletion of the action record failed.,刪除的動作記錄失敗,
-base,model,"ir.module.module,shortdesc",base.module_delivery,Delivery Costs,交貨成本,
+base,model,"ir.module.module,shortdesc",base.module_delivery,Delivery Costs,Delivery Costs,
 base,model,"ir.model.fields,field_description",base.field_ir_module_module_demo,Demo Data,展示資料,
 base,model,"res.country,name",base.dk,Denmark,丹麥,
 base,model,"ir.model.fields,field_description",base.field_ir_model_fields_depends,Dependencies,相依性,
@@ -9808,18 +9800,18 @@ base,sql_constraint,ir.model,0,Each model must be unique!,Each model must be uni
 base,model,"res.country,name",base.tp,East Timor,East Timor,
 base,model,"res.country,name",base.ec,Ecuador,Ecuador,
 base,model,"ir.module.module,shortdesc",base.module_l10n_ec,Ecuador - Accounting,Ecuador - Accounting,
-base,model,"ir.ui.view,arch_db",base.view_view_form,Edit Translations,Edit Translations,
+base,model,"ir.ui.view,arch_db",base.view_view_form,Edit Translations,編輯翻譯,
 base,model,"res.country,name",base.eg,Egypt,Egypt,
 base,model,"ir.model.fields,help",base.field_res_partner_partner_share,"Either customer (no user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data.","Either customer (no user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data.",
 base,model,"ir.model.fields,help",base.field_res_users_partner_share,"Either customer (no user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data.","Either customer (no user), either shared user. Indicated the current partner is a customer without access or with a limited access created for sharing data.",
 base,model,"res.country,name",base.sv,El Salvador,El Salvador,
 base,code,addons/base/ir/ir_ui_view.py,591,Element '%s' cannot be located in parent view,Element '%s' cannot be located in parent view,
 base,code,addons/base/res/res_company.py,229,Email,Email,
-base,model,"ir.model.fields,field_description",base.field_res_bank_email,Email,電郵,
-base,model,"ir.model.fields,field_description",base.field_res_company_email,Email,電郵,
-base,model,"ir.model.fields,field_description",base.field_res_partner_email,Email,電郵,
-base,model,"ir.model.fields,field_description",base.field_res_users_email,Email,電郵,
-base,model,"ir.ui.menu,name",base.menu_email,Email,Email,
+base,model,"ir.model.fields,field_description",base.field_res_bank_email,Email,電子郵件,
+base,model,"ir.model.fields,field_description",base.field_res_company_email,Email,電子郵件,
+base,model,"ir.model.fields,field_description",base.field_res_partner_email,Email,電子郵件,
+base,model,"ir.model.fields,field_description",base.field_res_users_email,Email,電子郵件,
+base,model,"ir.ui.menu,name",base.menu_email,Email,電子郵件,
 base,model,"ir.ui.view,arch_db",base.view_users_form,Email Address,Email Address,
 base,model,"ir.ui.view,arch_db",base.view_users_simple_form,Email Address,Email Address,
 base,model,"ir.module.module,shortdesc",base.module_fetchmail,Email Gateway,Email Gateway,
@@ -9869,9 +9861,9 @@ base,model,"ir.ui.view,arch_db",base.wizard_lang_export,Export Complete,Export C
 base,model,"ir.model.fields,field_description",base.field_ir_exports_export_fields,Export ID,Export ID,
 base,model,"ir.model.fields,field_description",base.field_ir_exports_name,Export Name,Export Name,
 base,model,"ir.ui.view,arch_db",base.wizard_lang_export,Export Settings,Export Settings,
-base,model,"ir.actions.act_window,name",base.action_wizard_lang_export,Export Translation,Export Translation,
+base,model,"ir.actions.act_window,name",base.action_wizard_lang_export,Export Translation,匯出翻譯,
 base,model,"ir.ui.menu,name",base.menu_wizard_lang_export,Export Translation,Export Translation,
-base,model,"ir.ui.view,arch_db",base.wizard_lang_export,Export Translations,Export Translations,
+base,model,"ir.ui.view,arch_db",base.wizard_lang_export,Export Translations,匯出翻譯,
 base,model,"ir.model.fields,field_description",base.field_ir_act_server_write_expression,Expression,Expression,
 base,model,"ir.model.fields,help",base.field_ir_server_object_lines_value,"Expression containing a value specification. 
 When Formula type is selected, this field may be a Python expression  that can use the same values as for the condition field on the server action.
@@ -10181,17 +10173,17 @@ base,model,"ir.model.fields,field_description",base.field_res_groups_full_name,G
 base,model,"ir.model.fields,field_description",base.field_wkf_transition_group_id,Group Required,Group Required,
 base,model,"ir.model.fields,help",base.field_res_groups_share,Group created to set access rights for sharing data with some users.,Group created to set access rights for sharing data with some users.,
 base,model,"ir.ui.view,arch_db",base.view_country_group_form,Group name,Group name,
-base,model,"ir.actions.act_window,name",base.action_res_groups,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_ir_act_report_xml_groups_id,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_ir_act_window_groups_id,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_ir_actions_todo_groups_id,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_ir_config_parameter_group_ids,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_ir_model_fields_groups,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_ir_rule_groups,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_ir_ui_menu_groups_id,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_ir_ui_view_groups_id,Groups,Groups,
-base,model,"ir.model.fields,field_description",base.field_res_users_groups_id,Groups,Groups,
-base,model,"ir.ui.menu,name",base.menu_action_res_groups,Groups,Groups,
+base,model,"ir.actions.act_window,name",base.action_res_groups,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_ir_act_report_xml_groups_id,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_ir_act_window_groups_id,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_ir_actions_todo_groups_id,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_ir_config_parameter_group_ids,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_ir_model_fields_groups,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_ir_rule_groups,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_ir_ui_menu_groups_id,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_ir_ui_view_groups_id,Groups,群組,
+base,model,"ir.model.fields,field_description",base.field_res_users_groups_id,Groups,群組,
+base,model,"ir.ui.menu,name",base.menu_action_res_groups,Groups,群組,
 base,model,"ir.ui.view,arch_db",base.config_wizard_step_view_form,Groups,群組,
 base,model,"ir.ui.view,arch_db",base.view_groups_form,Groups,群組,
 base,model,"ir.ui.view,arch_db",base.view_groups_search,Groups,群組,
@@ -10410,10 +10402,10 @@ base,model,"ir.model.fields,field_description",base.field_res_partner_image,Imag
 base,model,"ir.model.fields,field_description",base.field_res_users_image,Image,圖片,
 base,model,"ir.ui.view,arch_db",base.view_base_module_upgrade,Impacted Apps,Impacted Apps,
 base,model,"ir.model.fields,field_description",base.field_ir_sequence_implementation,Implementation,Implementation,
-base,model,"ir.ui.menu,name",base.menu_translation_export,Import / Export,Import / Export,
-base,model,"ir.actions.act_window,name",base.action_view_base_import_language,Import Translation,Import Translation,
+base,model,"ir.ui.menu,name",base.menu_translation_export,Import / Export,匯入／匯出,
+base,model,"ir.actions.act_window,name",base.action_view_base_import_language,Import Translation,匯入翻譯,
 base,model,"ir.ui.menu,name",base.menu_view_base_import_language,Import Translation,Import Translation,
-base,model,"ir.ui.view,arch_db",base.view_base_import_language,Import Translation,Import Translation,
+base,model,"ir.ui.view,arch_db",base.view_base_import_language,Import Translation,匯入翻譯,
 base,model,"ir.model.fields,field_description",base.field_ir_model_fields_modules,In Apps,In Apps,
 base,model,"ir.model.fields,field_description",base.field_ir_model_modules,In Apps,In Apps,
 base,model,"ir.ui.view,arch_db",base.view_currency_search,Inactive,Inactive,
@@ -10557,12 +10549,12 @@ base,model,"ir.model.fields,field_description",base.field_base_language_import_n
 base,code,addons/base/module/wizard/base_language_install.py,28,Language Pack,Language Pack,
 base,code,addons/base/res/res_lang.py,218,Language code cannot be modified.,Language code cannot be modified.,
 base,sql_constraint,ir.translation,0,Language code of translation item must be among known languages,Language code of translation item must be among known languages,
-base,model,"ir.actions.act_window,name",base.res_lang_act_window,Languages,Languages,
-base,model,"ir.model,name",base.model_res_lang,Languages,Languages,
-base,model,"ir.ui.menu,name",base.menu_res_lang_act_window,Languages,Languages,
-base,model,"ir.ui.view,arch_db",base.res_lang_form,Languages,Languages,
-base,model,"ir.ui.view,arch_db",base.res_lang_search,Languages,Languages,
-base,model,"ir.ui.view,arch_db",base.res_lang_tree,Languages,Languages,
+base,model,"ir.actions.act_window,name",base.res_lang_act_window,Languages,語言,
+base,model,"ir.model,name",base.model_res_lang,Languages,語言,
+base,model,"ir.ui.menu,name",base.menu_res_lang_act_window,Languages,語言,
+base,model,"ir.ui.view,arch_db",base.res_lang_form,Languages,語言,
+base,model,"ir.ui.view,arch_db",base.res_lang_search,Languages,語言,
+base,model,"ir.ui.view,arch_db",base.res_lang_tree,Languages,語言,
 base,model,"res.country,name",base.la,Laos,Laos,
 base,model,"ir.model.fields,field_description",base.field_ir_ui_view_write_date,Last Modification Date,Last Modification Date,
 base,model,"ir.model.fields,field_description",base.field__unknown___last_update,Last Modified on,最後修改:,
@@ -10831,9 +10823,9 @@ base,model,"ir.model.fields,help",base.field_ir_model_modules,List of modules in
 base,model,"ir.model.fields,help",base.field_ir_model_fields_selection,"List of options for a selection field, specified as a Python expression defining a list of (key, label) pairs. For example: [('blue','Blue'),('yellow','Yellow')]","List of options for a selection field, specified as a Python expression defining a list of (key, label) pairs. For example: [('blue','Blue'),('yellow','Yellow')]",
 base,model,"res.country,name",base.lt,Lithuania,Lithuania,
 base,model,"ir.ui.view,arch_db",base.view_base_language_install,Load,Load,
-base,model,"ir.actions.act_window,name",base.action_view_base_language_install,Load a Translation,Load a Translation,
-base,model,"ir.ui.menu,name",base.menu_view_base_language_install,Load a Translation,Load a Translation,
-base,model,"ir.ui.view,arch_db",base.view_base_language_install,Load a Translation,Load a Translation,
+base,model,"ir.actions.act_window,name",base.action_view_base_language_install,Load a Translation,載入翻譯,
+base,model,"ir.ui.menu,name",base.menu_view_base_language_install,Load a Translation,載入翻譯,
+base,model,"ir.ui.view,arch_db",base.view_base_language_install,Load a Translation,載入翻譯,
 base,model,"ir.model.fields,field_description",base.field_res_lang_code,Locale Code,Locale Code,
 base,model,"ir.module.category,name",base.module_category_localization,Localization,Localization,
 base,model,"ir.ui.view,arch_db",base.view_users_form,Localization,本地化,
@@ -11251,7 +11243,7 @@ base,model,"ir.module.module,shortdesc",base.module_l10n_pa,Panama - Accounting,
 base,model,"ir.model.fields,field_description",base.field_res_company_rml_paper_format,Paper Format,Paper Format,
 base,model,"res.country,name",base.pg,Papua New Guinea,Papua New Guinea,
 base,model,"res.country,name",base.py,Paraguay,Paraguay,
-base,model,"ir.ui.menu,name",base.menu_ir_property,Parameters,Parameters,
+base,model,"ir.ui.menu,name",base.menu_ir_property,Parameters,參數,
 base,model,"ir.ui.view,arch_db",base.ir_property_view,Parameters,參數,
 base,model,"ir.ui.view,arch_db",base.ir_property_view_search,Parameters,參數,
 base,model,"ir.ui.view,arch_db",base.ir_property_view_tree,Parameters,參數,
@@ -11286,7 +11278,7 @@ base,model,"ir.module.module,shortdesc",base.module_auth_crypt,Password Encrypti
 base,model,"ir.model.fields,field_description",base.field_ir_logging_path,Path,Path,
 base,model,"ir.model.fields,field_description",base.field_res_font_path,Path,Path,
 base,model,"ir.module.category,name",base.module_category_payment_acquirer,Payment Acquirer,款項受讓方,
-base,model,"ir.module.module,shortdesc",base.module_payment,Payment Acquirer,款項受讓方,
+base,model,"ir.module.module,shortdesc",base.module_payment,Payment Acquirer,Payment Acquirer,
 base,model,"ir.module.module,description",base.module_payment,Payment Acquirer Base Module,Payment Acquirer Base Module,
 base,model,"ir.module.module,summary",base.module_payment,Payment Acquirer Base Module,Payment Acquirer Base Module,
 base,model,"ir.module.module,summary",base.module_payment_adyen,Payment Acquirer: Adyen Implementation,Payment Acquirer: Adyen Implementation,
@@ -11394,13 +11386,13 @@ base,model,"ir.module.module,summary",base.module_website_crm_partner_assign,Pub
 base,model,"ir.module.module,summary",base.module_website_customer,Publish Your Customer References,Publish Your Customer References,
 base,model,"ir.model.fields,field_description",base.field_ir_module_module_published_version,Published Version,Published Version,
 base,model,"res.country,name",base.pr,Puerto Rico,Puerto Rico,
-base,model,"ir.ui.view,arch_db",base.view_partner_form,Purchase,Purchase,
+base,model,"ir.ui.view,arch_db",base.view_partner_form,Purchase,採購,
 base,model,"ir.module.module,shortdesc",base.module_purchase,Purchase Management,Purchase Management,
 base,model,"ir.module.module,summary",base.module_purchase,"Purchase Orders, Receipts, Vendor Bills","Purchase Orders, Receipts, Vendor Bills",
 base,model,"ir.module.module,shortdesc",base.module_purchase_requisition,Purchase Requisitions,Purchase Requisitions,
 base,model,"ir.module.module,shortdesc",base.module_purchase_mrp,Purchase and MRP Management,Purchase and MRP Management,
-base,model,"ir.module.category,name",base.module_category_purchase_management,Purchases,Purchases,
-base,model,"ir.module.category,name",base.module_category_purchases,Purchases,Purchases,
+base,model,"ir.module.category,name",base.module_category_purchase_management,Purchases,採購,
+base,model,"ir.module.category,name",base.module_category_purchases,Purchases,採購,
 base,model,"ir.model.fields,field_description",base.field_wkf_activity_action,Python Action,Python Action,
 base,model,"ir.model.fields,field_description",base.field_ir_act_server_code,Python Code,Python Code,
 base,model,"ir.ui.view,arch_db",base.view_server_action_form,Python Code,Python Code,
@@ -11551,14 +11543,14 @@ base,model,"res.country,name",base.mf,Saint Martin (French part),Saint Martin (F
 base,model,"res.country,name",base.pm,Saint Pierre and Miquelon,Saint Pierre and Miquelon,
 base,model,"res.country,name",base.st,Saint Tome (Sao Tome) and Principe,Saint Tome (Sao Tome) and Principe,
 base,model,"res.country,name",base.vc,Saint Vincent & Grenadines,Saint Vincent & Grenadines,
-base,model,"ir.ui.view,arch_db",base.view_partner_form,Sale,Sale,
+base,model,"ir.ui.view,arch_db",base.view_partner_form,Sale,銷售,
 base,model,"ir.module.module,shortdesc",base.module_account_voucher,Sale & Purchase Vouchers,Sale & Purchase Vouchers,
 base,model,"ir.module.module,shortdesc",base.module_sale_service_rating,Sale Service Rating,Sale Service Rating,
 base,model,"ir.module.category,name",base.module_category_sales,Sales,Sales,
 base,model,"ir.module.category,name",base.module_category_sales_management,Sales,Sales,
 base,model,"ir.module.module,shortdesc",base.module_sale,Sales,Sales,
 base,model,"ir.module.module,summary",base.module_website_quote,Sales,Sales,
-base,model,"ir.ui.view,arch_db",base.view_partner_form,Sales & Purchases,Sales & Purchases,
+base,model,"ir.ui.view,arch_db",base.view_partner_form,Sales & Purchases,銷售 & 採購,
 base,model,"ir.module.module,shortdesc",base.module_sale_expense,Sales Expense,Sales Expense,
 base,model,"ir.module.module,summary",base.module_sales_team,Sales Team,Sales Team,
 base,model,"ir.module.module,shortdesc",base.module_sales_team,Sales Teams,Sales Teams,
@@ -11577,12 +11569,12 @@ base,model,"ir.ui.view,arch_db",base.view_users_form_simple_modif,Save,Save,
 base,model,"ir.model.fields,field_description",base.field_ir_act_report_xml_attachment,Save as Attachment Prefix,Save as Attachment Prefix,
 base,model,"ir.module.module,summary",base.module_website_event,"Schedule, Promote and Sell Events","Schedule, Promote and Sell Events",
 base,model,"ir.ui.view,arch_db",base.ir_cron_view_search,Scheduled Action,Scheduled Action,
-base,model,"ir.actions.act_window,name",base.ir_cron_act,Scheduled Actions,Scheduled Actions,
-base,model,"ir.ui.menu,name",base.menu_ir_cron_act,Scheduled Actions,Scheduled Actions,
-base,model,"ir.ui.view,arch_db",base.ir_cron_view,Scheduled Actions,Scheduled Actions,
-base,model,"ir.ui.view,arch_db",base.ir_cron_view_calendar,Scheduled Actions,Scheduled Actions,
-base,model,"ir.ui.view,arch_db",base.ir_cron_view_search,Scheduled Actions,Scheduled Actions,
-base,model,"ir.ui.view,arch_db",base.ir_cron_view_tree,Scheduled Actions,Scheduled Actions,
+base,model,"ir.actions.act_window,name",base.ir_cron_act,Scheduled Actions,已排程動作,
+base,model,"ir.ui.menu,name",base.menu_ir_cron_act,Scheduled Actions,已排程動作,
+base,model,"ir.ui.view,arch_db",base.ir_cron_view,Scheduled Actions,已排程動作,
+base,model,"ir.ui.view,arch_db",base.ir_cron_view_calendar,Scheduled Actions,已排程動作,
+base,model,"ir.ui.view,arch_db",base.ir_cron_view_search,Scheduled Actions,已排程動作,
+base,model,"ir.ui.view,arch_db",base.ir_cron_view_tree,Scheduled Actions,已排程動作,
 base,model,"ir.module.module,shortdesc",base.module_hw_screen,Screen Driver,Screen Driver,
 base,model,"ir.ui.view,arch_db",base.view_view_search,Search,Search,
 base,selection,"ir.ui.view,type",0,Search,Search,
@@ -11592,9 +11584,9 @@ base,model,"ir.model.fields,field_description",base.field_ir_act_window_search_v
 base,model,"ir.ui.view,arch_db",base.view_module_filter,Search modules,Search modules,
 base,model,"ir.model.fields,field_description",base.field_ir_act_window_search_view,Search view,Search view,
 base,model,"ir.ui.view,arch_db",base.sequence_view,Second: %(sec)s,Second: %(sec)s,
-base,model,"ir.ui.menu,name",base.menu_security,Security,Security,
-base,model,"ir.ui.view,arch_db",base.act_report_xml_view,Security,Security,
-base,model,"ir.ui.view,arch_db",base.view_window_action_form,Security,Security,
+base,model,"ir.ui.menu,name",base.menu_security,Security,安全性,
+base,model,"ir.ui.view,arch_db",base.act_report_xml_view,Security,安全性,
+base,model,"ir.ui.view,arch_db",base.view_window_action_form,Security,安全性,
 base,model,"ir.ui.view,arch_db",base.ir_mail_server_form,Security and Authentication,Security and Authentication,
 base,code,addons/base/ir/ir_fields.py,305,See all possible values,See all possible values,
 base,model,"ir.model.fields,help",base.field_ir_act_server_model_object_field,"Select target field from the related document model.
@@ -11802,10 +11794,10 @@ base,model,"ir.ui.view,arch_db",base.wizard_update_translations,Synchronize Tran
 base,model,"res.country,name",base.sy,Syria,Syria,
 base,model,"ir.ui.view,arch_db",base.view_base_module_configuration_form,System Configuration Done,System Configuration Done,
 base,code,addons/base/module/wizard/base_module_configuration.py,20,System Configuration done,System Configuration done,
-base,model,"ir.actions.act_window,name",base.ir_config_list_action,System Parameters,System Parameters,
-base,model,"ir.ui.menu,name",base.ir_config_menu,System Parameters,System Parameters,
-base,model,"ir.ui.view,arch_db",base.view_ir_config_form,System Parameters,System Parameters,
-base,model,"ir.ui.view,arch_db",base.view_ir_config_list,System Parameters,System Parameters,
+base,model,"ir.actions.act_window,name",base.ir_config_list_action,System Parameters,系統參數,
+base,model,"ir.ui.menu,name",base.ir_config_menu,System Parameters,系統參數,
+base,model,"ir.ui.view,arch_db",base.view_ir_config_form,System Parameters,系統參數,
+base,model,"ir.ui.view,arch_db",base.view_ir_config_list,System Parameters,系統參數,
 base,model,"ir.ui.view,arch_db",base.view_ir_config_search,System Properties,System Properties,
 base,model,"ir.ui.view,arch_db",base.view_base_module_upgrade,System Update,System Update,
 base,selection,"base.language.export,format",0,TGZ Archive,TGZ Archive,
@@ -12051,11 +12043,11 @@ base,selection,"ir.translation,state",0,Translation in Progress,Translation in P
 base,code,addons/base/ir/ir_translation.py,578,"Translation is not valid:
 %s","Translation is not valid:
 %s",
-base,model,"ir.ui.menu,name",base.menu_translation,Translations,Translations,
-base,model,"ir.ui.view,arch_db",base.view_translation_dialog_tree,Translations,Translations,
-base,model,"ir.ui.view,arch_db",base.view_translation_form,Translations,Translations,
-base,model,"ir.ui.view,arch_db",base.view_translation_search,Translations,Translations,
-base,model,"ir.ui.view,arch_db",base.view_translation_tree,Translations,Translations,
+base,model,"ir.ui.menu,name",base.menu_translation,Translations,翻譯,
+base,model,"ir.ui.view,arch_db",base.view_translation_dialog_tree,Translations,翻譯,
+base,model,"ir.ui.view,arch_db",base.view_translation_form,Translations,翻譯,
+base,model,"ir.ui.view,arch_db",base.view_translation_search,Translations,翻譯,
+base,model,"ir.ui.view,arch_db",base.view_translation_tree,Translations,翻譯,
 base,selection,"ir.actions.act_window,view_type",0,Tree,Tree,
 base,selection,"ir.actions.act_window.view,view_mode",0,Tree,Tree,
 base,model,"ir.ui.view,arch_db",base.view_view_search,Tree,Tree,
@@ -12184,7 +12176,7 @@ base,model,"ir.model.fields,field_description",base.field_wkf_instance_uid,User,
 base,model,"ir.ui.view,arch_db",base.ir_cron_view_search,User,用戶,
 base,model,"ir.ui.view,arch_db",base.ir_filters_view_search,User,用戶,
 base,model,"ir.ui.view,arch_db",base.view_users_search,User,用戶,
-base,model,"ir.ui.menu,name",base.next_id_2,User Interface,User Interface,
+base,model,"ir.ui.menu,name",base.next_id_2,User Interface,使用者介面,
 base,model,"ir.model.fields,field_description",base.field_change_password_user_user_login,User Login,使用者登入,
 base,model,"ir.model.fields,field_description",base.field_res_users_log_ids,User log entries,User log entries,
 base,model,"ir.actions.act_window,name",base.act_values_form_defaults,User-defined Defaults,User-defined Defaults,
@@ -12198,15 +12190,15 @@ base,model,"ir.model.fields,field_description",base.field_change_password_wizard
 base,model,"ir.model.fields,field_description",base.field_res_groups_users,Users,用戶,
 base,model,"ir.model.fields,field_description",base.field_res_partner_user_ids,Users,用戶,
 base,model,"ir.model.fields,field_description",base.field_res_users_user_ids,Users,用戶,
-base,model,"ir.ui.menu,name",base.menu_action_res_users,Users,Users,
-base,model,"ir.ui.menu,name",base.menu_users,Users,Users,
-base,model,"ir.ui.view,arch_db",base.change_password_wizard_user_tree_view,Users,Users,
-base,model,"ir.ui.view,arch_db",base.view_groups_form,Users,Users,
-base,model,"ir.ui.view,arch_db",base.view_users_form,Users,Users,
-base,model,"ir.ui.view,arch_db",base.view_users_form_simple_modif,Users,Users,
-base,model,"ir.ui.view,arch_db",base.view_users_search,Users,Users,
-base,model,"ir.ui.view,arch_db",base.view_users_simple_form,Users,Users,
-base,model,"ir.ui.view,arch_db",base.view_users_tree,Users,Users,
+base,model,"ir.ui.menu,name",base.menu_action_res_users,Users,使用者,
+base,model,"ir.ui.menu,name",base.menu_users,Users,使用者,
+base,model,"ir.ui.view,arch_db",base.change_password_wizard_user_tree_view,Users,使用者,
+base,model,"ir.ui.view,arch_db",base.view_groups_form,Users,使用者,
+base,model,"ir.ui.view,arch_db",base.view_users_form,Users,使用者,
+base,model,"ir.ui.view,arch_db",base.view_users_form_simple_modif,Users,使用者,
+base,model,"ir.ui.view,arch_db",base.view_users_search,Users,使用者,
+base,model,"ir.ui.view,arch_db",base.view_users_simple_form,Users,使用者,
+base,model,"ir.ui.view,arch_db",base.view_users_tree,Users,使用者,
 base,model,"ir.ui.view,arch_db",base.view_groups_form,Users added to this group are automatically added in the following groups.,Users added to this group are automatically added in the following groups.,
 base,model,"ir.model.fields,help",base.field_res_groups_implied_ids,Users of this group automatically inherit those groups,Users of this group automatically inherit those groups,
 base,model,"res.country,name",base.uz,Uzbekistan,Uzbekistan,
@@ -12359,7 +12351,7 @@ base,model,"ir.ui.view,arch_db",base.view_workflow_transition_search,Workflow Tr
 base,model,"ir.ui.view,arch_db",base.view_workflow_workitem_form,Workflow Workitems,Workflow Workitems,
 base,model,"ir.ui.view,arch_db",base.view_workflow_workitem_search,Workflow Workitems,Workflow Workitems,
 base,model,"ir.ui.view,arch_db",base.view_workflow_workitem_tree,Workflow Workitems,Workflow Workitems,
-base,model,"ir.actions.act_window,name",base.action_workflow_form,Workflows,Workflows,
+base,model,"ir.actions.act_window,name",base.action_workflow_form,Workflows,工作流程,
 base,model,"ir.ui.menu,name",base.menu_workflow,Workflows,Workflows,
 base,model,"ir.ui.menu,name",base.menu_workflow_root,Workflows,Workflows,
 base,model,"ir.model.fields,field_description",base.field_wkf_triggers_workitem_id,Workitem,Workitem,
@@ -12982,7 +12974,7 @@ base_setup,model,"ir.ui.view,arch_db",base_setup.view_general_configuration,"You
 base_setup,model,"ir.model,name",base_setup.model_base_config_settings,base.config.settings,base.config.settings,
 bus,sql_constraint,bus.presence,0,A user can only have one IM status.,A user can only have one IM status.,
 bus,selection,"bus.presence,status",0,Away,Away,
-bus,model,"ir.model.fields,field_description",bus.field_bus_bus_channel,Channel,管道,
+bus,model,"ir.model.fields,field_description",bus.field_bus_bus_channel,Channel,頻道,
 bus,model,"ir.model.fields,field_description",bus.field_bus_bus_create_date,Create date,Create date,
 bus,model,"ir.model.fields,field_description",bus.field_bus_bus_create_uid,Created by,建立者,
 bus,model,"ir.model.fields,field_description",bus.field_bus_bus_display_name,Display Name,顯示名稱,
@@ -13574,7 +13566,7 @@ calendar,model,"ir.ui.view,arch_db",calendar.view_calendar_event_form,Duration,�
 calendar,model,"ir.model.fields,field_description",calendar.field_calendar_alarm_duration_minutes,Duration in minutes,Duration in minutes,
 calendar,model,"ir.model.fields,help",calendar.field_calendar_alarm_duration_minutes,Duration in minutes,Duration in minutes,
 calendar,selection,"calendar.alarm,type",0,Email,電郵,
-calendar,model,"ir.model.fields,field_description",calendar.field_calendar_attendee_email,Email,電郵,
+calendar,model,"ir.model.fields,field_description",calendar.field_calendar_attendee_email,Email,電子郵件,
 calendar,model,"ir.model.fields,help",calendar.field_calendar_attendee_email,Email of Invited Person,受邀者電郵,
 calendar,model,"ir.model.fields,field_description",calendar.field_calendar_contacts_partner_id,Employee,員工,
 calendar,model,"ir.model.fields,field_description",calendar.field_calendar_event_stop_date,End Date,結束日期,
@@ -14298,7 +14290,7 @@ crm,model,"ir.actions.act_window,name",crm.crm_team_act_tree,Cases by Sales Team
 crm,model,"ir.model,name",crm.model_crm_lead_tag,Category of lead,Category of lead,
 crm,model,"ir.model.fields,field_description",crm.field_crm_stage_on_change,Change Probability Automatically,自動修改概率,
 crm,model,"ir.ui.view,arch_db",crm.crm_planner,Change the layout of a quotation,Change the layout of a quotation,
-crm,model,"ir.ui.view,arch_db",crm.crm_lost_reason_view_form,Channel,管道,
+crm,model,"ir.ui.view,arch_db",crm.crm_lost_reason_view_form,Channel,頻道,
 crm,model,"ir.model.fields,help",crm.field_crm_team_use_opportunities,Check this box to manage opportunities in this sales team.,Check this box to manage opportunities in this sales team.,
 crm,model,"ir.ui.view,arch_db",crm.crm_case_form_view_oppor,Choose a date...,Choose a date...,
 crm,model,"ir.model.fields,field_description",crm.field_crm_lead_city,City,城市,
@@ -14495,8 +14487,8 @@ crm,model,"ir.ui.view,arch_db",crm.view_sale_config_settings,"Each sales team ha
                                     incoming leads.",
 crm,model,"ir.ui.view,arch_db",crm.crm_case_kanban_view_leads,Edit,編輯,
 crm,model,"crm.activity,name",crm.crm_activity_data_email,Email,電郵,
-crm,model,"ir.model.fields,field_description",crm.field_base_partner_merge_automatic_wizard_group_by_email,Email,電郵,
-crm,model,"ir.model.fields,field_description",crm.field_crm_lead_email_from,Email,電郵,
+crm,model,"ir.model.fields,field_description",crm.field_base_partner_merge_automatic_wizard_group_by_email,Email,電子郵件,
+crm,model,"ir.model.fields,field_description",crm.field_crm_lead_email_from,Email,電子郵件,
 crm,model,"ir.ui.view,arch_db",crm.crm_case_form_view_leads,Email,電郵,
 crm,model,"ir.ui.view,arch_db",crm.crm_case_form_view_oppor,Email,電郵,
 crm,model,"mail.message.subtype,name",crm.crm_activity_data_email_mail_message_subtype,Email,電郵,
@@ -15464,6 +15456,100 @@ fetchmail,model,"ir.ui.view,arch_db",fetchmail.view_email_server_form,Test & Con
 fetchmail,model,"ir.model.fields,field_description",fetchmail.field_fetchmail_server_user,Username,使用者名稱,
 fetchmail,model,"ir.model.fields,help",fetchmail.field_fetchmail_server_original,Whether a full original copy of each email should be kept for reference and attached to each processed message. This will usually double the size of your message database.,Whether a full original copy of each email should be kept for reference and attached to each processed message. This will usually double the size of your message database.,
 fetchmail,model,"ir.model.fields,help",fetchmail.field_fetchmail_server_attach,"Whether attachments should be downloaded. If not enabled, incoming emails will be stripped of any attachments before being processed","Whether attachments should be downloaded. If not enabled, incoming emails will be stripped of any attachments before being processed",
+google_account,model,"ir.model.fields,field_description",google_account.field_google_service_create_uid,Created by,建立者,
+google_account,model,"ir.model.fields,field_description",google_account.field_google_service_create_date,Created on,建立於,
+google_account,model,"ir.model.fields,field_description",google_account.field_google_service_display_name,Display Name,顯示名稱,
+google_account,model,"ir.model.fields,field_description",google_account.field_google_service_id,ID,編號,
+google_account,model,"ir.model.fields,field_description",google_account.field_google_service___last_update,Last Modified on,最後修改:,
+google_account,model,"ir.model.fields,field_description",google_account.field_google_service_write_uid,Last Updated by,最後更新：,
+google_account,model,"ir.model.fields,field_description",google_account.field_google_service_write_date,Last Updated on,最後更新於,
+google_account,code,addons/google_account/models/google_service.py,173,"Method not supported [%s] not in [GET, POST, PUT, PATCH or DELETE]!","Method not supported [%s] not in [GET, POST, PUT, PATCH or DELETE]!",
+google_account,code,addons/google_account/models/google_service.py,117,Something went wrong during your token generation. Maybe your Authorization Code is invalid,Something went wrong during your token generation. Maybe your Authorization Code is invalid,
+google_account,code,addons/google_account/models/google_service.py,52,Something went wrong during your token generation. Maybe your Authorization Code is invalid or already expired,Something went wrong during your token generation. Maybe your Authorization Code is invalid or already expired,
+google_account,code,addons/google_account/models/google_service.py,148,Something went wrong during your token generation. Maybe your Authorization Code is invalid or already expired [%s],Something went wrong during your token generation. Maybe your Authorization Code is invalid or already expired [%s],
+google_account,code,addons/google_account/models/google_service.py,197,Something went wrong with your request to google,Something went wrong with your request to google,
+google_account,model,"ir.model,name",google_account.model_google_service,google.service,google.service,
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,"<br/> You can now click on <b>'Create Client ID'</b>
+                                    <br/><br/>","<br/> You can now click on <b>'Create Client ID'</b>
+                                    <br/><br/>",
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,"<br/> You should now configure the allowed pages on which you will be redirected. To do it, you need to complete the field <b>""Authorized redirect URI""</b>
+                                    and set as value  (your own domain followed by <i>'/google_account/authentication'</i>):
+                                    <br/>==&gt;","<br/> You should now configure the allowed pages on which you will be redirected. To do it, you need to complete the field <b>""Authorized redirect URI""</b>
+                                    and set as value  (your own domain followed by <i>'/google_account/authentication'</i>):
+                                    <br/>==&gt;",
+google_calendar,model,"ir.actions.act_window,name",google_calendar.action_config_settings_google_calendar,API Configuration,API Configuration,
+google_calendar,model,"ir.ui.menu,name",google_calendar.menu_calendar_google_tech_config,API Credentials,API Credentials,
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,79,Accounts,科目,openerp-web
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,69,All events have been disconnected from your previous account. You can now restart the synchronization,All events have been disconnected from your previous account. You can now restart the synchronization,openerp-web
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,51,An administrator needs to configure Google Synchronization before you can use it!,An administrator needs to configure Google Synchronization before you can use it!,openerp-web
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,73,An error occured while disconnecting events from your previous account. Please retry or contact your administrator.,An error occured while disconnecting events from your previous account. Please retry or contact your administrator.,openerp-web
+google_calendar,model,"ir.model,name",google_calendar.model_calendar_attendee,Attendee information,參與者資訊,
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_users_form,Calendar,行事曆,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_res_users_google_calendar_cal_id,Calendar ID,Calendar ID,
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,"Check that the Application type is set on <b>'Web Application'</b>, then click on <b>'Configure consent screen'</b>.
+                                    <br/> Specify an email address and a product name, then save.
+                                    <br/><br/>","Check that the Application type is set on <b>'Web Application'</b>, then click on <b>'Configure consent screen'</b>.
+                                    <br/> Specify an email address and a product name, then save.
+                                    <br/><br/>",
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,"Click on <b>'Create a project...'</b> and enter a project name and change your id if you want. Don't forget to accept the Terms of Services
+                                    <br/><br/>","Click on <b>'Create a project...'</b> and enter a project name and change your id if you want. Don't forget to accept the Terms of Services
+                                    <br/><br/>",
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_base_config_settings_cal_client_id,Client_id,Client_id,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_base_config_settings_cal_client_secret,Client_key,Client_key,
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,48,Configuration,設定,openerp-web
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,52,Configuration,設定,openerp-web
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,Connect on your google account and go to,Connect on your google account and go to,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_google_calendar_display_name,Display Name,顯示名稱,
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,60,Do you want to do this now?,Do you want to do this now?,openerp-web
+google_calendar,model,"ir.model,name",google_calendar.model_calendar_event,Event,活動,
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,74,Event disconnection error,Event disconnection error,openerp-web
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,70,Event disconnection success,Event disconnection success,openerp-web
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_calendar_attendee_google_internal_event_id,Google Calendar Event Id,Google Calendar Event Id,
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,Google Client ID,Google Client ID,
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,Google Client Secret,Google Client Secret,
+google_calendar,sql_constraint,calendar.attendee,0,Google ID should be unique!,Google ID should be unique!,
+google_calendar,code,addons/google_calendar/models/google_calendar.py,687,"Google is lost... the next synchro will be a full synchro. 
+
+ %s","Google is lost... the next synchro will be a full synchro. 
+
+ %s",
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_google_calendar_id,ID,編號,
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,59,"In order to do this, you first need to disconnect all existing events from the old account.","In order to do this, you first need to disconnect all existing events from the old account.",openerp-web
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,"In the menu on left side, select the sub menu <b>'Credentials'</b> (from menu APIs and auth) and click on button <b>'Create new Client ID'</b>
+                                    <br/><br/>","In the menu on left side, select the sub menu <b>'Credentials'</b> (from menu APIs and auth) and click on button <b>'Create new Client ID'</b>
+                                    <br/><br/>",
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,"In the menu on left side, select the sub menu APIs (from menu APIs and auth) and click on <b>'Calendar API'</b>.
+                                    <br/> Activate the Calendar API by clicking on the blue button <b>'Enable API'</b>.
+                                    <br/> When it's done, the Calendar API overview will be available
+                                    <br/><br/>","In the menu on left side, select the sub menu APIs (from menu APIs and auth) and click on <b>'Calendar API'</b>.
+                                    <br/> Activate the Calendar API by clicking on the blue button <b>'Enable API'</b>.
+                                    <br/> When it's done, the Calendar API overview will be available
+                                    <br/><br/>",
+google_calendar,model,"ir.model.fields,help",google_calendar.field_res_users_google_calendar_cal_id,"Last Calendar ID who has been synchronized. If it is changed, we remove all links between GoogleID and Odoo Google Internal ID","Last Calendar ID who has been synchronized. If it is changed, we remove all links between GoogleID and Odoo Google Internal ID",
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_google_calendar___last_update,Last Modified on,最後修改:,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_res_users_google_calendar_last_sync_date,Last synchro date,Last synchro date,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_calendar_attendee_oe_synchro_date,Odoo Synchro Date,Odoo Synchro Date,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_calendar_event_oe_update_date,Odoo Update Date,Odoo Update Date,
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,"Once done, you will have the both informations (<b>Client ID</b> and <b>Client Secret</b>) that you need to insert in the 2 fields below!
+                                    <br/><br/>","Once done, you will have the both informations (<b>Client ID</b> and <b>Client Secret</b>) that you need to insert in the 2 fields below!
+                                    <br/><br/>",
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,40,Redirection,Redirection,openerp-web
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_res_users_google_calendar_rtoken,Refresh Token,Refresh Token,
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,Return at Top,Return at Top,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_base_config_settings_google_cal_sync,Show Tutorial,Show Tutorial,
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,90,Sync with <b>Google</b>,Sync with <b>Google</b>,openerp-web
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,44,"The Google Synchronization needs to be configured before you can use it, do you want to do it now?","The Google Synchronization needs to be configured before you can use it, do you want to do it now?",openerp-web
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,58,The account you are trying to synchronize (%s) is not the same as the last one used (%s)!,The account you are trying to synchronize (%s) is not the same as the last one used (%s)!,openerp-web
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,"To setup the signin process with Google, first you have to perform the following steps","To setup the signin process with Google, first you have to perform the following steps",
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_res_users_google_calendar_token_validity,Token Validity,Token Validity,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_base_config_settings_server_uri,URI for tuto,URI for tuto,
+google_calendar,model,"ir.model.fields,field_description",google_calendar.field_res_users_google_calendar_token,User token,User token,
+google_calendar,model,"ir.model,name",google_calendar.model_res_users,Users,用戶,
+google_calendar,code,addons/google_calendar/static/src/js/google_calendar.js,36,You will be redirected to Google to authorize access to your calendar!,You will be redirected to Google to authorize access to your calendar!,openerp-web
+google_calendar,code,addons/google_calendar/models/google_calendar.py,296,Your token is invalid or has been revoked !,Your token is invalid or has been revoked !,
+google_calendar,model,"ir.model,name",google_calendar.model_base_config_settings,base.config.settings,base.config.settings,
+google_calendar,model,"ir.model,name",google_calendar.model_google_calendar,google.calendar,google.calendar,
+google_calendar,model,"ir.ui.view,arch_db",google_calendar.view_calendar_config_settings,https://console.developers.google.com/,https://console.developers.google.com/,
 l10n_generic_coa,model,"account.tax,description",l10n_generic_coa.1_purchase_tax_template,15.00%,15.00%,
 l10n_generic_coa,model,"account.tax,description",l10n_generic_coa.1_sale_tax_template,15.00%,15.00%,
 l10n_generic_coa,model,"account.tax,name",l10n_generic_coa.1_purchase_tax_template,Tax 15.00%,Tax 15.00%,
@@ -15713,13 +15799,13 @@ mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_default,Activa
 mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_search,Active,啟用,
 mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_active_domain,Active domain,Active domain,
 mail,code,addons/mail/static/src/xml/client_action.xml,80,Add,Add,openerp-web
-mail,code,addons/mail/static/src/xml/followers.xml,65,Add Channels,Add Channels,openerp-web
+mail,code,addons/mail/static/src/xml/followers.xml,65,Add Channels,增加頻道,openerp-web
 mail,code,addons/mail/static/src/xml/followers.xml,62,Add Followers,新增關注者,openerp-web
 mail,model,"ir.ui.view,arch_db",mail.mail_wizard_invite_form,Add Followers,新增關注者,
 mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_user_signature,Add Signature,加入簽名,
 mail,model,"ir.model.fields,field_description",mail.field_mail_template_user_signature,Add Signature,加入簽名,
-mail,code,addons/mail/static/src/xml/client_action.xml,39,Add a channel,Add a channel,openerp-web
-mail,code,addons/mail/static/src/xml/client_action.xml,56,Add a channel,Add a channel,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,39,Add a channel,增加頻道,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,56,Add a channel,增加頻道,openerp-web
 mail,model,"ir.ui.view,arch_db",mail.mail_wizard_invite_form,Add channels to notify...,Add channels to notify...,
 mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Add contacts to notify...,Add contacts to notify...,
 mail,model,"ir.ui.view,arch_db",mail.mail_wizard_invite_form,Add contacts to notify...,Add contacts to notify...,
@@ -15811,22 +15897,22 @@ mail,model,"ir.model.fields,field_description",mail.field_mail_mail_email_cc,Cc,
 mail,model,"ir.model.fields,field_description",mail.field_mail_template_email_cc,Cc,副本,
 mail,model,"ir.ui.view,arch_db",mail.view_mail_tracking_value_form,Change,改變,
 mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_field,Changed Field,Changed Field,
-mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_channel_id,Channel,管道,
-mail,model,"ir.ui.view,arch_db",mail.mail_channel_partner_view_form,Channel,管道,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_channel_id,Channel,頻道,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_partner_view_form,Channel,頻道,
 mail,selection,"mail.channel,channel_type",0,Channel,頻道,
 mail,model,"ir.model.fields,field_description",mail.field_mail_channel_channel_type,Channel Type,Channel Type,
 mail,model,"ir.model.fields,field_description",mail.field_mail_channel_channel_message_ids,Channel message ids,Channel message ids,
-mail,code,addons/mail/static/src/xml/client_action.xml,35,Channels,管道,openerp-web
-mail,code,addons/mail/static/src/xml/client_action.xml,133,Channels,管道,openerp-web
-mail,code,addons/mail/static/src/xml/systray.xml,22,Channels,Channels,openerp-web
-mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_channel_ids,Channels,管道,
-mail,model,"ir.model.fields,field_description",mail.field_mail_mail_channel_ids,Channels,管道,
-mail,model,"ir.model.fields,field_description",mail.field_mail_message_channel_ids,Channels,管道,
-mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_channel_ids,Channels,管道,
-mail,model,"ir.model.fields,field_description",mail.field_res_partner_channel_ids,Channels,管道,
-mail,model,"ir.model.fields,field_description",mail.field_res_users_channel_ids,Channels,管道,
-mail,model,"ir.ui.menu,name",mail.mail_channel_menu_settings,Channels,管道,
-mail,model,"ir.ui.view,arch_db",mail.mail_channel_partner_view_tree,Channels,管道,
+mail,code,addons/mail/static/src/xml/client_action.xml,35,Channels,頻道,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,133,Channels,頻道,openerp-web
+mail,code,addons/mail/static/src/xml/systray.xml,22,Channels,頻道,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_channel_ids,Channels,頻道,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_channel_ids,Channels,頻道,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_channel_ids,Channels,頻道,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_channel_ids,Channels,頻道,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_channel_ids,Channels,頻道,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_channel_ids,Channels,頻道,
+mail,model,"ir.ui.menu,name",mail.mail_channel_menu_settings,Channels,頻道,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_partner_view_tree,Channels,頻道,
 mail,model,"ir.actions.act_window,name",mail.mail_channel_partner_action,Channels/Partner,Channels/Partner,
 mail,model,"ir.ui.menu,name",mail.mail_channel_partner_menu,Channels/Partner,Channels/Partner,
 mail,code,addons/mail/static/src/xml/systray.xml,21,Chat,Chat,openerp-web
@@ -16171,8 +16257,8 @@ mail,model,"ir.model.fields,help",mail.field_mail_template_scheduled_date,"If se
 mail,model,"ir.model.fields,help",mail.field_base_config_settings_alias_domain,"If you have setup a catch-all email domain redirected to the Odoo server, enter the domain name here.","If you have setup a catch-all email domain redirected to the Odoo server, enter the domain name here.",
 mail,code,addons/mail/models/mail_alias.py,141,Inactive Alias,Inactive Alias,
 mail,code,addons/mail/static/src/js/chat_manager.js,1045,Inbox,收件匣,openerp-web
-mail,code,addons/mail/static/src/xml/client_action.xml,22,Inbox,Inbox,openerp-web
-mail,code,addons/mail/static/src/xml/systray.xml,6,Inbox,Inbox,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,22,Inbox,收件匣,openerp-web
+mail,code,addons/mail/static/src/xml/systray.xml,6,Inbox,收件匣,openerp-web
 mail,model,"ir.model.fields,help",mail.field_mail_compose_message_parent_id,Initial thread message.,起始串訊息,
 mail,model,"ir.model.fields,help",mail.field_mail_mail_parent_id,Initial thread message.,起始串訊息,
 mail,model,"ir.model.fields,help",mail.field_mail_message_parent_id,Initial thread message.,起始串訊息,
@@ -16183,11 +16269,11 @@ mail,code,addons/mail/controllers/main.py,43,Invalid token in route %s,Invalid t
 mail,code,addons/mail/static/src/js/chat_manager.js,630,Invitation,Invitation,openerp-web
 mail,code,addons/mail/wizard/invite.py,54,Invitation to follow %s: %s,Invitation to follow %s: %s,
 mail,code,addons/mail/static/src/js/client_action.js,41,Invite,邀請,openerp-web
-mail,code,addons/mail/static/src/xml/client_action.xml,134,Invite,Invite,openerp-web
-mail,code,addons/mail/static/src/js/followers.js,143,Invite Follower,Invite Follower,openerp-web
-mail,code,addons/mail/static/src/js/client_action.js,32,Invite people,Invite people,openerp-web
-mail,code,addons/mail/static/src/xml/client_action.xml,134,Invite people,Invite people,openerp-web
-mail,code,addons/mail/static/src/js/client_action.js,653,Invite people to #%s,Invite people to #%s,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,134,Invite,邀請,openerp-web
+mail,code,addons/mail/static/src/js/followers.js,143,Invite Follower,邀請追蹤者,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,32,Invite people,邀請人員,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,134,Invite people,邀請人員,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,653,Invite people to #%s,邀請人員給 #%s,openerp-web
 mail,model,"ir.model,name",mail.model_mail_wizard_invite,Invite wizard,邀請精靈,
 mail,selection,"mail.channel,public",0,Invited people only,Invited people only,
 mail,model,"ir.model.fields,field_description",mail.field_account_analytic_account_message_is_follower,Is Follower,Is Follower,
@@ -16281,11 +16367,11 @@ mail,model,"ir.model.fields,field_description",mail.field_mail_test_write_date,L
 mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_write_date,Last Updated on,最後更新於,
 mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_write_date,Last Updated on,最後更新於,
 mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_kanban,Leave,Leave,
-mail,code,addons/mail/models/mail_channel.py,653,Leave this channel,Leave this channel,
-mail,code,addons/mail/static/src/xml/client_action.xml,101,Leave this channel,Leave this channel,openerp-web
+mail,code,addons/mail/models/mail_channel.py,653,Leave this channel,離開此頻道,
+mail,code,addons/mail/static/src/xml/client_action.xml,101,Leave this channel,離開此頻道,openerp-web
 mail,model,"ir.model.fields,help",mail.field_mail_wizard_invite_channel_ids,List of channels that will be added as listeners of the current document.,List of channels that will be added as listeners of the current document.,
 mail,model,"ir.model.fields,help",mail.field_mail_wizard_invite_partner_ids,List of partners that will be added as follower of the current document.,List of partners that will be added as follower of the current document.,
-mail,code,addons/mail/models/mail_channel.py,664,List users in the current channel,List users in the current channel,
+mail,code,addons/mail/models/mail_channel.py,664,List users in the current channel,列出此頻道的使用者,
 mail,model,"ir.model.fields,field_description",mail.field_mail_followers_channel_id,Listener,Listener,
 mail,model,"ir.model.fields,field_description",mail.field_mail_channel_channel_partner_ids,Listeners,Listeners,
 mail,code,addons/mail/static/src/js/chatter.js,39,Log,Log,openerp-web
@@ -16480,7 +16566,7 @@ mail,code,addons/mail/static/src/xml/client_action.xml,111,Online,Online,openerp
 mail,selection,"mail.channel.partner,fold_state",0,Open,開啟,
 mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_form,Open Document,Open Document,
 mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_form,Open Parent Document,Open Parent Document,
-mail,code,addons/mail/static/src/xml/client_action.xml,138,Open channel settings,Open channel settings,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,138,Open channel settings,開啟頻道設定,openerp-web
 mail,code,addons/mail/static/src/xml/client_action.xml,48,Open chat,Open chat,openerp-web
 mail,model,"ir.model.fields,field_description",mail.field_res_partner_opt_out,Opt-Out,不參加,
 mail,model,"ir.model.fields,field_description",mail.field_res_users_opt_out,Opt-Out,不參加,
@@ -16595,7 +16681,7 @@ mail,model,"ir.ui.view,arch_db",mail.email_template_preview_form,Preview of,Prev
 mail,model,"ir.model.fields,field_description",mail.field_mail_channel_public,Privacy,隱私,
 mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Privacy,隱私,
 mail,code,addons/mail/static/src/xml/client_action.xml,53,Private Channels,私人頻道,openerp-web
-mail,code,addons/mail/static/src/js/client_action.js,142,Public Channels,Public Channels,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,142,Public Channels,公開頻道,openerp-web
 mail,code,addons/mail/wizard/mail_compose_message.py,179,Re:,Re:,
 mail,selection,"mail.notification,email_status",0,Ready to Send,Ready to Send,
 mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Received,已接收,
@@ -16782,7 +16868,7 @@ mail,model,"ir.model.fields,field_description",mail.field_mail_template_partner_
 mail,code,addons/mail/static/src/xml/extended_chat_window.xml,7,To:,To:,openerp-web
 mail,code,addons/mail/static/src/xml/chatter.xml,20,To: Followers of,To: Followers of,openerp-web
 mail,code,addons/mail/static/src/js/thread.js,231,Today,Today,openerp-web
-mail,code,addons/mail/static/src/xml/client_action.xml,133,Toggle Channels,Toggle Channels,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,133,Toggle Channels,切換頻道,openerp-web
 mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Topics discussed in this group...,Topics discussed in this group...,
 mail,model,"ir.model.fields,help",mail.field_mail_compose_message_tracking_value_ids,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,
 mail,model,"ir.model.fields,help",mail.field_mail_mail_tracking_value_ids,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,
@@ -16839,8 +16925,8 @@ mail,model,"ir.model.fields,field_description",mail.field_stock_production_lot_m
 mail,model,"ir.ui.view,arch_db",mail.view_message_search,Unread messages,Unread messages,
 mail,code,addons/mail/static/src/xml/client_action.xml,136,Unstar all,Unstar all,openerp-web
 mail,code,addons/mail/static/src/xml/client_action.xml,136,Unstar all messages,Unstar all messages,openerp-web
-mail,code,addons/mail/static/src/xml/client_action.xml,137,Unsubscribe,Unsubscribe,openerp-web
-mail,code,addons/mail/static/src/xml/client_action.xml,137,Unsubscribe from channel,Unsubscribe from channel,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,137,Unsubscribe,取消訂閱,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,137,Unsubscribe from channel,取消訂閱此頻道,openerp-web
 mail,code,addons/mail/static/src/xml/thread.xml,186,Uploading,Uploading,openerp-web
 mail,code,addons/mail/static/src/js/composer.js,647,Uploading error,上傳錯誤,openerp-web
 mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_use_active_domain,Use active domain,Use active domain,
@@ -16880,7 +16966,7 @@ mail,code,addons/mail/static/src/js/chat_manager.js,630,You have been invited to
 mail,model,"ir.model.fields,help",mail.field_email_template_preview_attachment_ids,"You may attach files to this template, to be added to all emails created from this template","這個範本您可以加入附件, 從這範本新建所有郵件",
 mail,model,"ir.model.fields,help",mail.field_mail_template_attachment_ids,"You may attach files to this template, to be added to all emails created from this template","這個範本您可以加入附件, 從這範本新建所有郵件",
 mail,code,addons/mail/static/src/js/chat_manager.js,526,You unpinned your conversation with <b>%s</b>.,You unpinned your conversation with <b>%s</b>.,openerp-web
-mail,code,addons/mail/static/src/js/chat_manager.js,524,You unsubscribed from <b>%s</b>.,You unsubscribed from <b>%s</b>.,openerp-web
+mail,code,addons/mail/static/src/js/chat_manager.js,524,You unsubscribed from <b>%s</b>.,您已取消訂閱 <b>%s</b>.,openerp-web
 mail,model,"ir.ui.view,arch_db",mail.view_server_action_form_template,Your template does not defined the email address of the sender. Please update your template.,Your template does not defined the email address of the sender. Please update your template.,
 mail,code,addons/mail/models/ir_actions.py,33,Your template should define email_from,Your template should define email_from,
 mail,code,addons/mail/models/mail_thread.py,967,alias %s does not accept unknown author,alias %s does not accept unknown author,
@@ -17030,7 +17116,7 @@ payment,model,"ir.model.fields,field_description",payment.field_payment_acquirer
 payment,selection,"payment.transaction,state",0,Draft,草案,
 payment,model,"ir.ui.view,arch_db",payment.transaction_form,E-mail,E-mail,
 payment,model,"account.payment.method,name",payment.account_payment_method_electronic_in,Electronic,Electronic,
-payment,model,"ir.model.fields,field_description",payment.field_payment_transaction_partner_email,Email,電郵,
+payment,model,"ir.model.fields,field_description",payment.field_payment_transaction_partner_email,Email,電子郵件,
 payment,model,"ir.model.fields,field_description",payment.field_payment_acquirer_environment,Environment,環境,
 payment,model,"ir.ui.view,arch_db",payment.acquirer_search,Environment,環境,
 payment,selection,"payment.transaction,state",0,Error,錯誤,
@@ -17256,7 +17342,7 @@ portal,model,"ir.model.fields,field_description",portal.field_portal_wizard_crea
 portal,model,"ir.model.fields,field_description",portal.field_portal_wizard_user_create_date,Created on,建立於,
 portal,model,"ir.model.fields,field_description",portal.field_portal_wizard_display_name,Display Name,顯示名稱,
 portal,model,"ir.model.fields,field_description",portal.field_portal_wizard_user_display_name,Display Name,顯示名稱,
-portal,model,"ir.model.fields,field_description",portal.field_portal_wizard_user_email,Email,電郵,
+portal,model,"ir.model.fields,field_description",portal.field_portal_wizard_user_email,Email,電子郵件,
 portal,code,addons/portal/wizard/portal_wizard.py,130,Group %s is not a portal,Group %s is not a portal,
 portal,model,"ir.model.fields,field_description",portal.field_portal_wizard_id,ID,編號,
 portal,model,"ir.model.fields,field_description",portal.field_portal_wizard_user_id,ID,編號,
@@ -17433,7 +17519,7 @@ procurement,model,"ir.ui.view,arch_db",procurement.view_compute_schedulers_wizar
 procurement,selection,"procurement.order,state",0,Running,運行中,
 procurement,model,"ir.model.fields,field_description",procurement.field_procurement_order_date_planned,Scheduled Date,預定日期,
 procurement,model,"ir.ui.view,arch_db",procurement.view_procurement_filter,Scheduled Month,Scheduled Month,
-procurement,model,"ir.ui.view,arch_db",procurement.view_compute_schedulers_wizard,Scheduler Parameters,Scheduler Parameters,
+procurement,model,"ir.ui.view,arch_db",procurement.view_compute_schedulers_wizard,Scheduler Parameters,排程器參數,
 procurement,model,"ir.ui.view,arch_db",procurement.procurement_form_view,Scheduling,Scheduling,
 procurement,model,"ir.ui.view,arch_db",procurement.view_procurement_filter,Search Procurement,Search Procurement,
 procurement,model,"ir.ui.view,arch_db",procurement.view_procurement_rule_filter,Search Procurement,Search Procurement,
@@ -17486,8 +17572,8 @@ product,model,"ir.ui.view,arch_db",product.product_template_only_form_view,"<str
                         to the loss of their possible customizations.","<strong>Warning</strong>: adding or deleting attributes
                         will delete and recreate existing variants and lead
                         to the loss of their possible customizations.",
-product,code,addons/product/models/product.py,168,A barcode can only be assigned to one product !,A barcode can only be assigned to one product !,
-product,sql_constraint,product.product,0,A barcode can only be assigned to one product !,A barcode can only be assigned to one product !,
+product,code,addons/product/models/product.py,168,A barcode can only be assigned to one product !,一個條碼只能指定給一個產品,
+product,sql_constraint,product.product,0,A barcode can only be assigned to one product !,一個條碼只能指定給一個產品,
 product,model,"ir.model.fields,help",product.field_product_category_type,A category of the view type is a virtual category that can be used as the parent of another category to create a hierarchical structure.,A category of the view type is a virtual category that can be used as the parent of another category to create a hierarchical structure.,
 product,model,"ir.model.fields,help",product.field_product_product_description_sale,"A description of the Product that you want to communicate to your customers. This description will be copied to every Sale Order, Delivery Order and Customer Invoice/Refund","A description of the Product that you want to communicate to your customers. This description will be copied to every Sale Order, Delivery Order and Customer Invoice/Refund",
 product,model,"ir.model.fields,help",product.field_product_template_description_sale,"A description of the Product that you want to communicate to your customers. This description will be copied to every Sale Order, Delivery Order and Customer Invoice/Refund","A description of the Product that you want to communicate to your customers. This description will be copied to every Sale Order, Delivery Order and Customer Invoice/Refund",
@@ -18452,7 +18538,7 @@ sales_team,model,"ir.model.fields,field_description",sales_team.field_sale_confi
 sales_team,model,"ir.model.fields,field_description",sales_team.field_crm_team_create_date,Created on,建立於,
 sales_team,model,"ir.model.fields,field_description",sales_team.field_sale_config_settings_create_date,Created on,建立於,
 sales_team,model,"ir.ui.menu,name",sales_team.menu_action_currency_form,Currencies,Currencies,
-sales_team,model,"ir.ui.menu,name",sales_team.menu_partner_form,Customers,Customers,
+sales_team,model,"ir.ui.menu,name",sales_team.menu_partner_form,Customers,客戶,
 sales_team,code,addons/sales_team/static/src/js/sales_team_dashboard.js,16,Dashboard,儀表板,openerp-web
 sales_team,model,"ir.actions.act_window,name",sales_team.crm_team_salesteams_act,Dashboard,儀表板,
 sales_team,model,"ir.ui.menu,name",sales_team.menu_sales_team_act,Dashboard,儀表板,
@@ -18774,8 +18860,8 @@ stock,selection,"stock.move,procure_method",0,Advanced: Apply Procurement Rules,
 stock,model,"ir.ui.view,arch_db",stock.stock_picking_type_kanban,All,所有,
 stock,model,"ir.model.fields,field_description",stock.field_stock_quant_package_children_quant_ids,All Bulk Content,All Bulk Content,
 stock,model,"ir.actions.act_window,name",stock.action_picking_type_list,All Operations,所有作業,
-stock,model,"ir.actions.act_window,name",stock.stock_picking_action_picking_type,All Transfers,All Transfers,
-stock,model,"ir.ui.menu,name",stock.all_picking,All Transfers,All Transfers,
+stock,model,"ir.actions.act_window,name",stock.stock_picking_action_picking_type,All Transfers,所有作業,
+stock,model,"ir.ui.menu,name",stock.all_picking,All Transfers,所有作業,
 stock,selection,"stock.picking,move_type",0,All at once,一次過,
 stock,model,"ir.ui.view,arch_db",stock.report_delivery_document,"All items couldn't be shipped, the remaining ones will be shipped as soon as they become available.","All items couldn't be shipped, the remaining ones will be shipped as soon as they become available.",
 stock,code,addons/stock/models/stock_inventory.py,104,All products,所有產品,
@@ -18832,9 +18918,9 @@ stock,code,addons/stock/models/stock_picking.py,66,Backorder exists,欠單已存
 stock,model,"ir.actions.act_window,name",stock.action_picking_tree_backorder,Backorders,欠單,
 stock,model,"ir.ui.view,arch_db",stock.view_picking_internal_search,Backorders,欠單,
 stock,model,"ir.model.fields,field_description",stock.field_stock_location_barcode,Barcode,條碼,
-stock,model,"ir.ui.view,arch_db",stock.view_stock_config_settings,Barcode Interface,Barcode Interface,
-stock,model,"ir.model.fields,field_description",stock.field_stock_picking_type_barcode_nomenclature_id,Barcode Nomenclature,Barcode Nomenclature,
-stock,model,"ir.ui.menu,name",stock.menu_wms_barcode_nomenclature_all,Barcode Nomenclatures,Barcode Nomenclatures,
+stock,model,"ir.ui.view,arch_db",stock.view_stock_config_settings,Barcode Interface,條碼介面,
+stock,model,"ir.model.fields,field_description",stock.field_stock_picking_type_barcode_nomenclature_id,Barcode Nomenclature,條碼命名,
+stock,model,"ir.ui.menu,name",stock.menu_wms_barcode_nomenclature_all,Barcode Nomenclatures,條碼命名,
 stock,model,"ir.model.fields,field_description",stock.field_stock_config_settings_module_stock_barcode,Barcode scanner support,Barcode scanner support,
 stock,model,"ir.ui.view,arch_db",stock.inventory_planner,"Before creating your products, here are a few concepts your should understand:","Before creating your products, here are a few concepts your should understand:",
 stock,selection,"res.partner,picking_warn",0,Blocking Message,Blocking Message,
@@ -20891,10 +20977,10 @@ utm,model,"ir.ui.view,arch_db",utm.utm_campaign_tree,Campaign,行銷活動,
 utm,model,"ir.model.fields,field_description",utm.field_utm_campaign_name,Campaign Name,行銷活動名稱,
 utm,model,"ir.actions.act_window,name",utm.utm_campaign_act,Campaigns,行銷活動,
 utm,model,"ir.ui.menu,name",utm.menu_utm_campaign_act,Campaigns,行銷活動,
-utm,model,"ir.ui.view,arch_db",utm.utm_medium_view_form,Channel,管道,
-utm,model,"ir.ui.view,arch_db",utm.utm_source_view_form,Channel,管道,
-utm,model,"ir.model.fields,field_description",utm.field_utm_medium_name,Channel Name,管道名稱,
-utm,model,"ir.model,name",utm.model_utm_medium,Channels,管道,
+utm,model,"ir.ui.view,arch_db",utm.utm_medium_view_form,Channel,頻道,
+utm,model,"ir.ui.view,arch_db",utm.utm_source_view_form,Channel,頻道,
+utm,model,"ir.model.fields,field_description",utm.field_utm_medium_name,Channel Name,頻道名稱,
+utm,model,"ir.model,name",utm.model_utm_medium,Channels,頻道,
 utm,model,"utm.campaign,name",utm.utm_campaign_christmas_special,Christmas Special,Christmas Special,
 utm,model,"ir.actions.act_window,help",utm.utm_medium_action,Click to define a new medium.,Click to define a new medium.,
 utm,model,"ir.actions.act_window,help",utm.utm_source_action,Click to define a new source.,Click to define a new source.,
@@ -20935,7 +21021,7 @@ utm,model,"ir.ui.menu,name",utm.menu_utm_medium,Medium,Medium,
 utm,model,"ir.ui.view,arch_db",utm.utm_medium_view_tree,Medium,Medium,
 utm,model,"ir.ui.view,arch_db",utm.utm_source_view_tree,Medium,Medium,
 utm,model,"utm.source,name",utm.utm_source_newsletter,Newsletter,電子報,
-utm,model,"utm.campaign,name",utm.utm_campaign_fall_drive,Sale,Sale,
+utm,model,"utm.campaign,name",utm.utm_campaign_fall_drive,Sale,銷售,
 utm,model,"utm.source,name",utm.utm_source_search_engine,Search engine,Search engine,
 utm,model,"ir.model,name",utm.model_utm_source,Source,來源,
 utm,model,"ir.model.fields,field_description",utm.field_crm_lead_source_id,Source,來源,
@@ -21812,8 +21898,8 @@ web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboa
 web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,133,Help us spread the word: Share Odoo's awesomeness with your friends!,Help us spread the word: Share Odoo's awesomeness with your friends!,openerp-web
 web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,31,Installed App,Installed App,openerp-web
 web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,32,Installed Apps,Installed Apps,openerp-web
-web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,67,Invite,Invite,openerp-web
-web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,65,Invite new users:,Invite new users:,openerp-web
+web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,67,Invite,邀請人員,openerp-web
+web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,65,Invite new users:,邀請新使用者:,openerp-web
 web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,61,Manage access rights,Manage access rights,openerp-web
 web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,101,Need more help?,Need more help?,openerp-web
 web_settings_dashboard,code,addons/web_settings_dashboard/static/src/xml/dashboard.xml,34,No app installed,No app installed,openerp-web
