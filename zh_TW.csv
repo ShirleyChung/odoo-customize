@@ -1,0 +1,1337 @@
+module,type,name,res_id,src,value,comments
+mail,model,"mail.template,body_html",mail.mail_template_data_notification_email_default,"
+<div>
+% if ctx.get('has_button_access'):
+<div itemscope itemtype=""http://schema.org/EmailMessage"">
+    <div itemprop=""potentialAction"" itemscope itemtype=""http://schema.org/ViewAction"">
+        <link itemprop=""target"" href=""${ctx['button_access']['url']}""/>
+        <link itemprop=""url"" href=""${ctx['button_access']['url']}""/>
+        <meta itemprop=""name"" content=""View ${ctx['model_name']}""/>
+    </div>
+</div>
+% endif
+% if not ctx['is_discussion'] or not len(ctx['actions']) == 0 or ctx.get('has_button_access'):
+<div summary=""o_mail_notification"" style=""padding: 0px; width:600px;"">
+<table cellspacing=""0"" cellpadding=""0"" border=""0"" style=""width: 600px; margin-top: 5px;"">
+<tbody><tr>
+    <td valign=""center"">
+        % if ctx.get('has_button_access'):
+        <a href=""${ctx['button_access']['url']}"" style=""padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"">${ctx['button_access']['title']}</a>
+        % endif
+
+        % if ctx.get('has_button_follow'):
+        % if ctx.get('has_button_access'):
+           |
+        % endif
+        <a href=""${ctx['button_follow']['url']}"" style=""color: #875A7B; text-decoration: none !important;"">${ctx['button_follow']['title']}</a>
+        % elif ctx.get('has_button_unfollow'):
+        % if ctx.get('has_button_access'):
+           |
+        % endif
+        <a href=""${ctx['button_unfollow']['url']}"" style=""color: #875A7B; text-decoration: none !important;"">${ctx['button_unfollow']['title']}</a>
+        % endif
+
+        % if ctx.get('actions'):
+        % for action in ctx['actions']:
+        |
+        <a href=""${action['url']}"" style=""color: #875A7B; text-decoration:none !important;"">${action['title']}</a>
+        % endfor
+        % endif
+    </td>
+    <td valign=""center"" align=""right"">
+        <img src=""/logo.png"" style=""padding: 0px; margin: 0px; height: auto; width: 80px;"" alt=""${user.company_id.name}"">
+    </td>
+</tr>
+<tr>
+    <td colspan=""2"" style=""text-align:center;"">
+        <hr width=""100%""
+            style=""background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:10px 0;"">
+        % if ctx.get('subtype') and ctx.get('subtype').internal:
+        <span style=""background-color: #f2dede; padding: 5px;"">
+            <strong>Internal note</strong>: replies are not sent to followers.
+        </span>
+        % endif
+    </td>
+</tr>
+</tbody></table>
+</div>
+% endif
+${object.body | safe}
+% if ctx.get('tracking'):
+    <ul>
+    % for tracking in ctx['tracking']
+        <li>${tracking[0]} : ${tracking[1]} -&gt; ${tracking[2]}</li>
+    % endfor
+    </ul>
+% endif
+
+% if ctx.get('signature'):
+    ${ctx['signature'] | safe}
+% endif
+<br/>
+<p style=""color: #555555;"">
+    Sent by
+    % if ctx.get('website_url'):
+    <a href=""${ctx['website_url']}"" style=""text-decoration:none; color: #875A7B;"">
+    % endif
+    ${ctx.get('company_name')}
+    % if ctx.get('website_url'):
+    </a>
+    % endif
+    using
+    <a href=""https://www.odoo.com"" style=""text-decoration:none; color: #875A7B;"">Odoo</a>.
+</p>
+</div>","
+<div>
+% if ctx.get('has_button_access'):
+<div itemscope itemtype=""http://schema.org/EmailMessage"">
+    <div itemprop=""potentialAction"" itemscope itemtype=""http://schema.org/ViewAction"">
+        <link itemprop=""target"" href=""${ctx['button_access']['url']}""/>
+        <link itemprop=""url"" href=""${ctx['button_access']['url']}""/>
+        <meta itemprop=""name"" content=""View ${ctx['model_name']}""/>
+    </div>
+</div>
+% endif
+% if not ctx['is_discussion'] or not len(ctx['actions']) == 0 or ctx.get('has_button_access'):
+<div summary=""o_mail_notification"" style=""padding: 0px; width:600px;"">
+<table cellspacing=""0"" cellpadding=""0"" border=""0"" style=""width: 600px; margin-top: 5px;"">
+<tbody><tr>
+    <td valign=""center"">
+        % if ctx.get('has_button_access'):
+        <a href=""${ctx['button_access']['url']}"" style=""padding: 8px 12px; font-size: 12px; color: #FFFFFF; text-decoration: none !important; font-weight: 400; background-color: #875A7B; border: 0px solid #875A7B; border-radius:3px"">${ctx['button_access']['title']}</a>
+        % endif
+
+        % if ctx.get('has_button_follow'):
+        % if ctx.get('has_button_access'):
+           |
+        % endif
+        <a href=""${ctx['button_follow']['url']}"" style=""color: #875A7B; text-decoration: none !important;"">${ctx['button_follow']['title']}</a>
+        % elif ctx.get('has_button_unfollow'):
+        % if ctx.get('has_button_access'):
+           |
+        % endif
+        <a href=""${ctx['button_unfollow']['url']}"" style=""color: #875A7B; text-decoration: none !important;"">${ctx['button_unfollow']['title']}</a>
+        % endif
+
+        % if ctx.get('actions'):
+        % for action in ctx['actions']:
+        |
+        <a href=""${action['url']}"" style=""color: #875A7B; text-decoration:none !important;"">${action['title']}</a>
+        % endfor
+        % endif
+    </td>
+    <td valign=""center"" align=""right"">
+        <img src=""/logo.png"" style=""padding: 0px; margin: 0px; height: auto; width: 80px;"" alt=""${user.company_id.name}"">
+    </td>
+</tr>
+<tr>
+    <td colspan=""2"" style=""text-align:center;"">
+        <hr width=""100%""
+            style=""background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:10px 0;"">
+        % if ctx.get('subtype') and ctx.get('subtype').internal:
+        <span style=""background-color: #f2dede; padding: 5px;"">
+            <strong>Internal note</strong>: replies are not sent to followers.
+        </span>
+        % endif
+    </td>
+</tr>
+</tbody></table>
+</div>
+% endif
+${object.body | safe}
+% if ctx.get('tracking'):
+    <ul>
+    % for tracking in ctx['tracking']
+        <li>${tracking[0]} : ${tracking[1]} -&gt; ${tracking[2]}</li>
+    % endfor
+    </ul>
+% endif
+
+% if ctx.get('signature'):
+    ${ctx['signature'] | safe}
+% endif
+<br/>
+<p style=""color: #555555;"">
+    Sent by
+    % if ctx.get('website_url'):
+    <a href=""${ctx['website_url']}"" style=""text-decoration:none; color: #875A7B;"">
+    % endif
+    ${ctx.get('company_name')}
+    % if ctx.get('website_url'):
+    </a>
+    % endif
+    using
+    <a href=""https://www.odoo.com"" style=""text-decoration:none; color: #875A7B;"">Odoo</a>.
+</p>
+</div>",
+mail,code,addons/mail/models/mail_channel.py,640, This channel is private. People must be invited to join it., This channel is private. People must be invited to join it.,
+mail,model,"mail.template,subject",mail.mail_template_data_notification_email_default,${object.subject or (object.record_name and 'Re: %s' % object.record_name) or (object.parent_id and object.parent_id.subject and 'Re: %s' % object.parent_id.subject) or (object.parent_id and object.parent_id.record_name and 'Re: %s' % object.parent_id.record_name)},${object.subject or (object.record_name and 'Re: %s' % object.record_name) or (object.parent_id and object.parent_id.subject and 'Re: %s' % object.parent_id.subject) or (object.parent_id and object.parent_id.record_name and 'Re: %s' % object.parent_id.record_name)},
+mail,code,addons/mail/static/src/js/chat_manager.js,66,%d Messages,%d Messages,openerp-web
+mail,code,addons/mail/models/mail_template.py,258,%s (copy),%s (副本),
+mail,code,addons/mail/models/mail_thread.py,233,%s created,%s created,
+mail,code,addons/mail/models/res_users.py,69,%s has joined the %s network.,%s 已加入 %s 網路.,
+mail,code,addons/mail/static/src/xml/thread.xml,94,(from,(from,openerp-web
+mail,model,"ir.model.fields,help",mail.field_mail_shortcode_shortcode_type,* Smiley are only used for HTML code to display an image * Text (default value) is used to substitute text with another text,* Smiley are only used for HTML code to display an image * Text (default value) is used to substitute text with another text,
+mail,code,addons/mail/static/src/xml/thread.xml,195,-------- Show older messages --------,-------- Show older messages --------,openerp-web
+mail,code,addons/mail/models/mail_channel.py,644,"<br><br>
+            You can mention someone by typing <b>@username</b>, this will grab its attention.<br>
+            You can mention a channel by typing <b>#channel</b>.<br>
+            You can execute a command by typing <b>/command</b>.<br>
+            You can insert canned responses in your message by typing <b>:shortcut</b>.<br>","<br><br>
+            You can mention someone by typing <b>@username</b>, this will grab its attention.<br>
+            You can mention a channel by typing <b>#channel</b>.<br>
+            You can execute a command by typing <b>/command</b>.<br>
+            You can insert canned responses in your message by typing <b>:shortcut</b>.<br>",
+mail,code,addons/mail/models/mail_channel.py,551,"<div class=""o_mail_notification"">created <a href=""#"" class=""o_channel_redirect"" data-oe-id=""%s"">#%s</a></div>","<div class=""o_mail_notification"">created <a href=""#"" class=""o_channel_redirect"" data-oe-id=""%s"">#%s</a></div>",
+mail,code,addons/mail/models/mail_channel.py,474,"<div class=""o_mail_notification"">joined <a href=""#"" class=""o_channel_redirect"" data-oe-id=""%s"">#%s</a></div>","<div class=""o_mail_notification"">joined <a href=""#"" class=""o_channel_redirect"" data-oe-id=""%s"">#%s</a></div>",
+mail,code,addons/mail/models/mail_channel.py,527,"<div class=""o_mail_notification"">joined <a href=""#"" class=""o_channel_redirect"" data-oe-id=""%s"">#%s</a></div>","<div class=""o_mail_notification"">joined <a href=""#"" class=""o_channel_redirect"" data-oe-id=""%s"">#%s</a></div>",
+mail,code,addons/mail/models/mail_channel.py,168,"<div class=""o_mail_notification"">left <a href=""#"" class=""o_channel_redirect"" data-oe-id=""%s"">#%s</a></div>","<div class=""o_mail_notification"">left <a href=""#"" class=""o_channel_redirect"" data-oe-id=""%s"">#%s</a></div>",
+mail,code,addons/mail/wizard/invite.py,23,"<div><p>Hello,</p><p>%s invited you to follow %s document: %s.</p></div>","<div><p>Hello,</p><p>%s invited you to follow %s document: %s.</p></div>",
+mail,code,addons/mail/wizard/invite.py,26,"<div><p>Hello,</p><p>%s invited you to follow a new document.</p></div>","<div><p>Hello,</p><p>%s invited you to follow a new document.</p></div>",
+mail,code,addons/mail/static/src/js/tour.js,28,<p><b>Chat with coworkers</b> in real-time using direct messages.</p><p><i>You might need to invite users from the Settings app first.</i></p>,<p><b>Chat with coworkers</b> in real-time using direct messages.</p><p><i>You might need to invite users from the Settings app first.</i></p>,openerp-web
+mail,code,addons/mail/static/src/js/tour.js,15,<p><b>Write a message</b> to the members of the channel here.</p> <p>You can notify someone with <i>'@'</i> or link another channel with <i>'#'</i>. Start your message with <i>'/'</i> to get the list of possible commands.</p>,<p><b>Write a message</b> to the members of the channel here.</p> <p>You can notify someone with <i>'@'</i> or link another channel with <i>'#'</i>. Start your message with <i>'/'</i> to get the list of possible commands.</p>,openerp-web
+mail,code,addons/mail/static/src/js/tour.js,11,"<p>Channels make it easy to organize information across different topics and groups.</p> <p>Try to <b>create your first channel</b> (e.g. sales, marketing, product XYZ, after work party, etc).</p>","<p>Channels make it easy to organize information across different topics and groups.</p> <p>Try to <b>create your first channel</b> (e.g. sales, marketing, product XYZ, after work party, etc).</p>",openerp-web
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,"<span attrs=""{'invisible': [('composition_mode', '!=', 'mass_mail')]}"">
+                                <strong>Email mass mailing</strong> on
+                                <span attrs=""{'invisible': [('use_active_domain', '=', True)]}"">the selected records</span>
+                                <span attrs=""{'invisible': [('use_active_domain', '=', False)]}"">the current search filter</span>.
+                            </span>
+                            <span attrs=""{'invisible':['|', ('model', '=', False), ('composition_mode', '=', 'mass_mail')]}"">Followers of the document and</span>","<span attrs=""{'invisible': [('composition_mode', '!=', 'mass_mail')]}"">
+                                <strong>Email mass mailing</strong> on
+                                <span attrs=""{'invisible': [('use_active_domain', '=', True)]}"">the selected records</span>
+                                <span attrs=""{'invisible': [('use_active_domain', '=', False)]}"">the current search filter</span>.
+                            </span>
+                            <span attrs=""{'invisible':['|', ('model', '=', False), ('composition_mode', '=', 'mass_mail')]}"">Followers of the document and</span>",
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,"<span class=""o_stat_text"">Add</span>
+                                    <span class=""o_stat_text"">Context Action</span>","<span class=""o_stat_text"">Add</span>
+                                    <span class=""o_stat_text"">Context Action</span>",
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,"<span class=""o_stat_text"">Remove</span>
+                                    <span class=""o_stat_text"">Context Action</span>","<span class=""o_stat_text"">Remove</span>
+                                    <span class=""o_stat_text"">Context Action</span>",
+mail,model,"ir.ui.view,arch_db",mail.view_general_configuration_mail_alias_domain,<span>failed emails</span>,<span>failed emails</span>,
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,"<strong>All records matching your current search filter will be mailed,
+                                    not only the ids selected in the list view.</strong><br/>
+                                If you want to work only with selected ids, please uncheck the
+                                list header checkbox.","<strong>All records matching your current search filter will be mailed,
+                                    not only the ids selected in the list view.</strong><br/>
+                                If you want to work only with selected ids, please uncheck the
+                                list header checkbox.",
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,"<strong>Moreover, if you want to send a lot of emails, we recommend you to use the mass mailing module</strong>. <br/>
+                                Confirming this wizard will probably take a few minutes blocking your browser.","<strong>Moreover, if you want to send a lot of emails, we recommend you to use the mass mailing module</strong>. <br/>
+                                Confirming this wizard will probably take a few minutes blocking your browser.",
+mail,model,"ir.model.fields,help",mail.field_mail_alias_alias_defaults,A Python dictionary that will be evaluated to provide default values when creating new records for this alias.,A Python dictionary that will be evaluated to provide default values when creating new records for this alias.,
+mail,model,"ir.model.fields,help",mail.field_mail_alias_mixin_alias_defaults,A Python dictionary that will be evaluated to provide default values when creating new records for this alias.,A Python dictionary that will be evaluated to provide default values when creating new records for this alias.,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_defaults,A Python dictionary that will be evaluated to provide default values when creating new records for this alias.,A Python dictionary that will be evaluated to provide default values when creating new records for this alias.,
+mail,model,"ir.actions.act_window,help",mail.mail_shortcode_action,"A shortcode is a keyboard shortcut. For instance, you type #gm and it will be transformed into ""Good Morning"".","A shortcode is a keyboard shortcut. For instance, you type #gm and it will be transformed into ""Good Morning"".",
+mail,model,"ir.model,name",mail.model_res_groups,Access Groups,存取群組,
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_needaction,Action Needed,待處理,
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_needaction,Action Needed,待處理,
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_needaction,Action Needed,待處理,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_needaction,Action Needed,待處理,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_needaction,Action Needed,待處理,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_needaction,Action Needed,待處理,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_needaction,Action Needed,待處理,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_needaction,Action Needed,待處理,
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_default,Activated by default when subscribing.,訂閱後預設為啟用,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_search,Active,活躍,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_active_domain,Active domain,Active domain,
+mail,code,addons/mail/static/src/xml/client_action.xml,80,Add,Add,openerp-web
+mail,code,addons/mail/static/src/xml/followers.xml,65,Add Channels,Add Channels,openerp-web
+mail,code,addons/mail/static/src/xml/followers.xml,62,Add Followers,新增關注者,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.mail_wizard_invite_form,Add Followers,新增關注者,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_user_signature,Add Signature,加入簽名,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_user_signature,Add Signature,加入簽名,
+mail,code,addons/mail/static/src/xml/client_action.xml,39,Add a channel,Add a channel,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,56,Add a channel,Add a channel,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.mail_wizard_invite_form,Add channels to notify...,Add channels to notify...,
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Add contacts to notify...,Add contacts to notify...,
+mail,model,"ir.ui.view,arch_db",mail.mail_wizard_invite_form,Add contacts to notify...,Add contacts to notify...,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_partner_ids,Additional Contacts,Additional Contacts,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Advanced,提出,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Advanced Settings,進階設定,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_id,Alias,別名,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_id,Alias,別名,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_alias_id,Alias,別名,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_alias_id,Alias,別名,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_form,Alias,別名,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_tree,Alias,別名,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_contact,Alias Contact Security,Alias Contact Security,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_contact,Alias Contact Security,Alias Contact Security,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_contact,Alias Contact Security,Alias Contact Security,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_alias_contact,Alias Contact Security,Alias Contact Security,
+mail,model,"ir.model.fields,field_description",mail.field_base_config_settings_alias_domain,Alias Domain,Alias Domain,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_name,Alias Name,Alias Name,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_name,Alias Name,Alias Name,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_name,Alias Name,Alias Name,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_domain,Alias domain,領域別名,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_domain,Alias domain,領域別名,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_domain,Alias domain,領域別名,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_model_id,Aliased Model,Aliased Model,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_model_id,Aliased Model,Aliased Model,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_model_id,Aliased Model,Aliased Model,
+mail,model,"ir.actions.act_window,name",mail.action_view_mail_alias,Aliases,別名,
+mail,model,"ir.ui.menu,name",mail.mail_alias_menu,Aliases,別名,
+mail,code,addons/mail/static/src/xml/systray.xml,20,All,All,openerp-web
+mail,selection,"res.partner,notify_email",0,All Messages,All Messages,
+mail,code,addons/mail/static/src/js/chat_manager.js,195,Anonymous,Anonymous,openerp-web
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_no_auto_thread,Answers do not go in the original document discussion thread. This has an impact on the generated message-id.,Answers do not go in the original document discussion thread. This has an impact on the generated message-id.,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_no_auto_thread,Answers do not go in the original document discussion thread. This has an impact on the generated message-id.,Answers do not go in the original document discussion thread. This has an impact on the generated message-id.,
+mail,model,"ir.model.fields,help",mail.field_mail_message_no_auto_thread,Answers do not go in the original document discussion thread. This has an impact on the generated message-id.,Answers do not go in the original document discussion thread. This has an impact on the generated message-id.,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_model_id,Applies to,Applies to,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_model_id,Applies to,Applies to,
+mail,code,addons/mail/static/src/js/followers.js,117,Apply,套用,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Attach a file,Attach a file,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_attachment_ids,Attachments,附件,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_attachment_ids,Attachments,附件,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_attachment_ids,Attachments,附件,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_attachment_ids,Attachments,附件,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_attachment_ids,Attachments,附件,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Attachments,附件,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_attachment_ids,Attachments are linked to a document through model / res_id and to the message through this field.,Attachments are linked to a document through model / res_id and to the message through this field.,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_attachment_ids,Attachments are linked to a document through model / res_id and to the message through this field.,Attachments are linked to a document through model / res_id and to the message through this field.,
+mail,model,"ir.model.fields,help",mail.field_mail_message_attachment_ids,Attachments are linked to a document through model / res_id and to the message through this field.,Attachments are linked to a document through model / res_id and to the message through this field.,
+mail,selection,"mail.alias,alias_contact",0,Authenticated Partners,Authenticated Partners,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_author_id,Author,作者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_author_id,Author,作者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_author_id,Author,作者,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Author,作者,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Author Signature (mass mail only),Author Signature (mass mail only),
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_author_id,"Author of the message. If not set, email_from may hold an email address that did not match any partner.","Author of the message. If not set, email_from may hold an email address that did not match any partner.",
+mail,model,"ir.model.fields,help",mail.field_mail_mail_author_id,"Author of the message. If not set, email_from may hold an email address that did not match any partner.","Author of the message. If not set, email_from may hold an email address that did not match any partner.",
+mail,model,"ir.model.fields,help",mail.field_mail_message_author_id,"Author of the message. If not set, email_from may hold an email address that did not match any partner.","Author of the message. If not set, email_from may hold an email address that did not match any partner.",
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_author_avatar,Author's avatar,Author's avatar,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_author_avatar,Author's avatar,Author's avatar,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_author_avatar,Author's avatar,Author's avatar,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_group_public_id,Authorized Group,擁有授權的群組,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_auto_delete,Auto Delete,自動刪除,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_auto_delete,Auto Delete,自動刪除,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_auto_delete,Auto Delete,自動刪除,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_group_ids,Auto Subscription,自動訂閱,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_message_subtype_form,Auto subscription,Auto subscription,
+mail,model,"ir.ui.view,arch_db",mail.res_partner_opt_out_search,Available for mass mailing,可以大量寄信,
+mail,code,addons/mail/static/src/xml/followers.xml,87,Be careful with channels following internal notifications,Be careful with channels following internal notifications,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_body_html,Body,內容,
+mail,model,"ir.model.fields,field_description",mail.field_ir_act_server_body_html,Body,內容,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_body_html,Body,內容,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Body,內容,
+mail,model,"ir.ui.view,arch_db",mail.view_message_form,Body,內容,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_bounce,Bounce,Bounce,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_bounce,Bounce,Bounce,
+mail,selection,"mail.notification,email_status",0,Bounced,Bounced,
+mail,code,addons/mail/static/src/js/followers.js,125,Cancel,取消,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Cancel,取消,
+mail,model,"ir.ui.view,arch_db",mail.mail_wizard_invite_form,Cancel,取消,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Cancel,取消,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tree,Cancel Email,Cancel Email,
+mail,selection,"mail.mail,state",0,Cancelled,取消,
+mail,selection,"mail.shortcode,shortcode_type",0,Canned Response,Canned Response,
+mail,model,"ir.model,name",mail.model_mail_shortcode,Canned Response / Shortcode,Canned Response / Shortcode,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_email_cc,Carbon copy message recipients,郵件副本收件人,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_email_cc,Carbon copy recipients (placeholders may be used here),副本收件人 (佔位符可在這裡使用),
+mail,model,"ir.model.fields,help",mail.field_mail_template_email_cc,Carbon copy recipients (placeholders may be used here),副本收件人 (佔位符可在這裡使用),
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_email_cc,Cc,副本,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_email_cc,Cc,副本,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_email_cc,Cc,副本,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tracking_value_form,Change,改變,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_field,Changed Field,Changed Field,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_channel_id,Channel,管道,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_partner_view_form,Channel,管道,
+mail,selection,"mail.channel,channel_type",0,Channel,頻道,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_channel_type,Channel Type,Channel Type,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_channel_message_ids,Channel message ids,Channel message ids,
+mail,code,addons/mail/static/src/xml/client_action.xml,35,Channels,管道,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,133,Channels,管道,openerp-web
+mail,code,addons/mail/static/src/xml/systray.xml,22,Channels,Channels,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_channel_ids,Channels,管道,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_channel_ids,Channels,管道,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_channel_ids,Channels,管道,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_channel_ids,Channels,管道,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_channel_ids,Channels,管道,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_channel_ids,Channels,管道,
+mail,model,"ir.ui.menu,name",mail.mail_channel_menu_settings,Channels,管道,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_partner_view_tree,Channels,管道,
+mail,model,"ir.actions.act_window,name",mail.mail_channel_partner_action,Channels/Partner,Channels/Partner,
+mail,model,"ir.ui.menu,name",mail.mail_channel_partner_menu,Channels/Partner,Channels/Partner,
+mail,code,addons/mail/static/src/xml/systray.xml,21,Chat,Chat,openerp-web
+mail,model,"ir.actions.client,name",mail.mail_channel_action_client_chat,Chat,Chat,
+mail,selection,"mail.channel,channel_type",0,Chat Discussion,Chat Discussion,
+mail,model,"ir.actions.act_window,name",mail.mail_shortcode_action,Chat Shortcode,Chat Shortcode,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_child_ids,Child Messages,子訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_child_ids,Child Messages,子訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_child_ids,Child Messages,子訊息,
+mail,model,"ir.ui.view,arch_db",mail.view_server_action_form_template,Choose a template to display its values.,Choose a template to display its values.,
+mail,model,"ir.ui.view,arch_db",mail.email_template_preview_form,Choose an example,Choose an example,
+mail,code,addons/mail/models/mail_thread.py,339,Click here to add new %(document)s or send an email to: %(email_link)s,Click here to add new %(document)s or send an email to: %(email_link)s,
+mail,code,addons/mail/models/mail_thread.py,355,Click here to add new %s,Click here to add new %s,
+mail,model,"ir.actions.act_window,help",mail.mail_shortcode_action,Click to define a new chat shortcode.,Click to define a new chat shortcode.,
+mail,selection,"mail.channel.partner,fold_state",0,Closed,關閉,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Comma-separated carbon copy recipients addresses,Comma-separated carbon copy recipients addresses,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Comma-separated ids of recipient partners,Comma-separated ids of recipient partners,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_partner_to,Comma-separated ids of recipient partners (placeholders may be used here),Comma-separated ids of recipient partners (placeholders may be used here),
+mail,model,"ir.model.fields,help",mail.field_ir_act_server_partner_to,Comma-separated ids of recipient partners (placeholders may be used here),Comma-separated ids of recipient partners (placeholders may be used here),
+mail,model,"ir.model.fields,help",mail.field_mail_template_partner_to,Comma-separated ids of recipient partners (placeholders may be used here),Comma-separated ids of recipient partners (placeholders may be used here),
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Comma-separated recipient addresses,Comma-separated recipient addresses,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_email_to,Comma-separated recipient addresses (placeholders may be used here),逗號分隔的收件人地址（佔位符可以用在這裡）,
+mail,model,"ir.model.fields,help",mail.field_ir_act_server_email_to,Comma-separated recipient addresses (placeholders may be used here),逗號分隔的收件人地址（佔位符可以用在這裡）,
+mail,model,"ir.model.fields,help",mail.field_mail_template_email_to,Comma-separated recipient addresses (placeholders may be used here),逗號分隔的收件人地址（佔位符可以用在這裡）,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Comment,評語,
+mail,selection,"mail.compose.message,message_type",0,Comment,評語,
+mail,selection,"mail.message,message_type",0,Comment,評語,
+mail,model,"ir.actions.act_window,name",mail.action_email_compose_message_wizard,Compose Email,撰寫郵件,
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Compose Email,撰寫郵件,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_composition_mode,Composition mode,撰寫模式,
+mail,code,addons/mail/static/src/xml/thread.xml,24,"Congratulations, your inbox is empty","恭喜!, 你沒有任何待處理的郵件",openerp-web
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Content,內容,
+mail,model,"ir.ui.view,arch_db",mail.view_message_search,Content,內容,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_body,Contents,內容,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_body,Contents,內容,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_body,Contents,內容,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_fold_state,Conversation Fold State,Conversation Fold State,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_is_minimized,Conversation is minimized,Conversation is minimized,
+mail,code,addons/mail/static/src/xml/systray.xml,14,Conversations,Conversations,openerp-web
+mail,model,"ir.model.fields,help",mail.field_res_partner_message_bounce,Counter of the number of bounced emails for this contact,Counter of the number of bounced emails for this contact,
+mail,model,"ir.model.fields,help",mail.field_res_users_message_bounce,Counter of the number of bounced emails for this contact,Counter of the number of bounced emails for this contact,
+mail,code,addons/mail/static/src/js/client_action.js,320,Create %s,Create %s,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_create_uid,Created by,建立者,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_create_date,Created on,建立於,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_create_date,Created on,建立於,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Creation Month,建立月份,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_starred,Current user has a starred notification linked to this message,Current user has a starred notification linked to this message,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_starred,Current user has a starred notification linked to this message,Current user has a starred notification linked to this message,
+mail,model,"ir.model.fields,help",mail.field_mail_message_starred,Current user has a starred notification linked to this message,Current user has a starred notification linked to this message,
+mail,code,addons/mail/models/res_partner.py,19,Customers,客戶,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_date,Date,日期,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_date,Date,日期,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_date,Date,日期,
+mail,model,"ir.model.fields,help",mail.field_calendar_event_message_last_post,Date of the last message posted on the record.,釋出到記錄上的最後資訊的日期,
+mail,model,"ir.model.fields,help",mail.field_crm_lead_message_last_post,Date of the last message posted on the record.,釋出到記錄上的最後資訊的日期,
+mail,model,"ir.model.fields,help",mail.field_crm_team_message_last_post,Date of the last message posted on the record.,釋出到記錄上的最後資訊的日期,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_message_last_post,Date of the last message posted on the record.,釋出到記錄上的最後資訊的日期,
+mail,model,"ir.model.fields,help",mail.field_mail_test_message_last_post,Date of the last message posted on the record.,釋出到記錄上的最後資訊的日期,
+mail,model,"ir.model.fields,help",mail.field_mail_thread_message_last_post,Date of the last message posted on the record.,釋出到記錄上的最後資訊的日期,
+mail,model,"ir.model.fields,help",mail.field_res_partner_message_last_post,Date of the last message posted on the record.,釋出到記錄上的最後資訊的日期,
+mail,model,"ir.model.fields,help",mail.field_res_users_message_last_post,Date of the last message posted on the record.,釋出到記錄上的最後資訊的日期,
+mail,model,"ir.ui.view,arch_db",mail.message_user_assigned,Dear,Dear,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_default,Default,預設,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_null_value,Default Value,預設值,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_null_value,Default Value,預設值,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_defaults,Default Values,預設值,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_defaults,Default Values,預設值,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_defaults,Default Values,預設值,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_use_default_to,Default recipients,Default recipients,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_use_default_to,Default recipients,Default recipients,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_use_default_to,"Default recipients of the record:
+- partner (using id on a partner or the partner_id field) OR
+- email (using email_from or email field)","Default recipients of the record:
+- partner (using id on a partner or the partner_id field) OR
+- email (using email_from or email field)",
+mail,model,"ir.model.fields,help",mail.field_mail_template_use_default_to,"Default recipients of the record:
+- partner (using id on a partner or the partner_id field) OR
+- email (using email_from or email field)","Default recipients of the record:
+- partner (using id on a partner or the partner_id field) OR
+- email (using email_from or email field)",
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_auto_delete,Delete Emails,Delete Emails,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_auto_delete_message,Delete Message Copy,Delete Message Copy,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_auto_delete,Delete sent emails (mass mailing only),Delete sent emails (mass mailing only),
+mail,code,addons/mail/static/src/xml/thread.xml,184,Delete this attachment,刪除附加檔,openerp-web
+mail,selection,"mail.mail,state",0,Delivery Failed,傳送失敗,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_description,Description,說明,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_description,Description,說明,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_description,Description,說明,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_message_subtype_form,Description,說明,
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_description,"Description that will be added in the message posted for this subtype. If void, the name will be added instead.","Description that will be added in the message posted for this subtype. If void, the name will be added instead.",
+mail,code,addons/mail/static/src/xml/client_action.xml,44,Direct Messages,Direct Messages,openerp-web
+mail,model,"ir.ui.menu,name",mail.mail_channel_menu_root_chat,Discuss,討論區,
+mail,model,"ir.model,name",mail.model_mail_channel,Discussion channel,討論區頻道,
+mail,model,"mail.message.subtype,name",mail.mt_comment,Discussions,討論,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_followers_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_partner_needaction_rel_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_display_name,Display Name,顯示名稱,
+mail,model,"ir.model.fields,field_description",mail.field_publisher_warranty_contract_display_name,Display Name,顯示名稱,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Display an option on related documents to open a composition wizard with this template,Display an option on related documents to open a composition wizard with this template,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_auto_delete_message,Do not keep a copy of the email in the document communication history (mass mailing only),Do not keep a copy of the email in the document communication history (mass mailing only),
+mail,model,"ir.model,name",mail.model_mail_followers,Document Followers,Document Followers,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Dynamic Placeholder Generator,Dynamic Placeholder Generator,
+mail,code,addons/mail/static/src/js/followers.js,114,Edit Subscription of ,Edit Subscription of ,openerp-web
+mail,code,addons/mail/static/src/xml/followers.xml,50,Edit subscription,Edit subscription,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Email,電郵,
+mail,model,"ir.ui.view,arch_db",mail.view_server_action_form_template,Email,電郵,
+mail,selection,"mail.compose.message,message_type",0,Email,電郵,
+mail,selection,"mail.message,message_type",0,Email,電郵,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Email Alias,電郵別名,
+mail,model,"ir.model,name",mail.model_mail_alias,Email Aliases,電子郵件別名,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Email Configuration,電子郵件設置,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_notify_email,Email Messages and Notifications,Email Messages and Notifications,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_notify_email,Email Messages and Notifications,Email Messages and Notifications,
+mail,model,"ir.ui.view,arch_db",mail.email_template_preview_form,Email Preview,預覽郵件,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Email Search,郵件搜尋,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_partner_needaction_rel_email_status,Email Status,Email Status,
+mail,model,"ir.model.fields,field_description",mail.field_ir_act_server_template_id,Email Template,Email Template,
+mail,model,"ir.model,name",mail.model_email_template_preview,Email Template Preview,預覽郵件範本,
+mail,model,"ir.model,name",mail.model_mail_template,Email Templates,郵件範本,
+mail,model,"ir.model,name",mail.model_mail_thread,Email Thread,電子郵件討論串,
+mail,model,"ir.model.fields,help",mail.field_res_users_alias_id,Email address internally associated with this user. Incoming emails will appear in the user's notifications.,Email address internally associated with this user. Incoming emails will appear in the user's notifications.,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_email_from,Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.,Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_email_from,Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.,Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.,
+mail,model,"ir.model.fields,help",mail.field_mail_message_email_from,Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.,Email address of the sender. This field is set when no matching partner is found and replaces the author_id field in the chatter.,
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Email address to redirect replies...,Email address to redirect replies...,
+mail,model,"ir.model,name",mail.model_mail_compose_message,Email composition wizard,電子郵件撰寫精靈,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Email message,郵件訊息,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_message_subtype_form,Email message,郵件訊息,
+mail,model,"ir.actions.act_window,name",mail.action_view_mail_mail,Emails,電子郵件,
+mail,model,"ir.ui.menu,name",mail.menu_mail_mail,Emails,電子郵件,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tree,Emails,電子郵件,
+mail,code,addons/mail/models/update.py,101,Error during communication with the publisher warranty server.,與發佈者保用伺服器聯絡時發生錯誤。,
+mail,code,addons/mail/models/mail_mail.py,255,Error without exception. Probably due do sending an email without computed recipients.,Error without exception. Probably due do sending an email without computed recipients.,
+mail,sql_constraint,mail.followers,0,"Error, a channel cannot follow twice the same object.","Error, a channel cannot follow twice the same object.",
+mail,sql_constraint,mail.followers,0,"Error, a partner cannot follow twice the same object.","Error, a partner cannot follow twice the same object.",
+mail,sql_constraint,mail.followers,0,Error: A follower must be either a partner or a channel (but not both).,Error: A follower must be either a partner or a channel (but not both).,
+mail,selection,"mail.alias,alias_contact",0,Everyone,Everyone,
+mail,selection,"mail.channel,public",0,Everyone,Everyone,
+mail,selection,"mail.notification,email_status",0,Exception,Exception,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Extended Filters...,增加篩選條件...,
+mail,model,"ir.model.fields,field_description",mail.field_base_config_settings_fail_counter,Fail Mail,Fail Mail,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Failed,已失敗,
+mail,code,addons/mail/models/mail_template.py,397,Failed to render template %r using values %r,Failed to render template %r using values %r,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_failure_reason,Failure Reason,Failure Reason,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Failure Reason,Failure Reason,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_failure_reason,"Failure reason. This is usually the exception thrown by the email server, stored to ease the debugging of mailing issues.","Failure reason. This is usually the exception thrown by the email server, stored to ease the debugging of mailing issues.",
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_starred_partner_ids,Favorited By,Favorited By,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_starred_partner_ids,Favorited By,Favorited By,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_starred_partner_ids,Favorited By,Favorited By,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_model_object_field,Field,欄位,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_model_object_field,Field,欄位,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_field_desc,Field Description,欄位說明,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_field_type,Field Type,欄位類型,
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_relation_field,Field used to link the related model to the subtype model when using automatic subscription on a related document. The field is used to compute getattr(related_document.relation_field).,Field used to link the related model to the subtype model when using automatic subscription on a related document. The field is used to compute getattr(related_document.relation_field).,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_copyvalue,"Final placeholder expression, to be copy-pasted in the desired template field.",最後的模板欄位，找到要複製-貼上的區塊,
+mail,model,"ir.model.fields,help",mail.field_mail_template_copyvalue,"Final placeholder expression, to be copy-pasted in the desired template field.",最後的模板欄位，找到要複製-貼上的區塊,
+mail,selection,"mail.channel.partner,fold_state",0,Folded,Folded,
+mail,code,addons/mail/models/mail_thread.py,699,Follow,關注,
+mail,code,addons/mail/static/src/xml/followers.xml,21,Follow,Follow,openerp-web
+mail,model,"ir.actions.act_window,name",mail.action_view_followers,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_follower_ids,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_follower_ids,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_follower_ids,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_follower_ids,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_follower_ids,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_follower_ids,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_follower_ids,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_follower_ids,Followers,關注者,
+mail,model,"ir.ui.menu,name",mail.menu_email_followers,Followers,關注者,
+mail,model,"ir.ui.view,arch_db",mail.view_followers_tree,Followers,關注者,
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_channel_ids,Followers (Channels),Followers (Channels),
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_channel_ids,Followers (Channels),Followers (Channels),
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_channel_ids,Followers (Channels),Followers (Channels),
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_channel_ids,Followers (Channels),Followers (Channels),
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_channel_ids,Followers (Channels),Followers (Channels),
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_channel_ids,Followers (Channels),Followers (Channels),
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_channel_ids,Followers (Channels),Followers (Channels),
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_channel_ids,Followers (Channels),Followers (Channels),
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_partner_ids,Followers (Partners),Followers (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_partner_ids,Followers (Partners),Followers (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_partner_ids,Followers (Partners),Followers (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_partner_ids,Followers (Partners),Followers (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_partner_ids,Followers (Partners),Followers (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_partner_ids,Followers (Partners),Followers (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_partner_ids,Followers (Partners),Followers (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_partner_ids,Followers (Partners),Followers (Partners),
+mail,model,"ir.ui.view,arch_db",mail.view_mail_subscription_form,Followers Form,Followers Form,
+mail,selection,"mail.alias,alias_contact",0,Followers only,Followers only,
+mail,code,addons/mail/static/src/xml/followers.xml,25,Following,正在關注,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_email_from,From,自,
+mail,model,"ir.model.fields,field_description",mail.field_ir_act_server_email_from,From,自,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_email_from,From,自,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_email_from,From,自,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_email_from,From,自,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_email_from,From,自,
+mail,model,"ir.ui.view,arch_db",mail.view_message_form,Gateway,Gateway,
+mail,code,addons/mail/models/res_users.py,46,Go to the configuration panel,Go to the configuration panel,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_search,Group By,分組方式,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Group By,分組方式,
+mail,model,"ir.ui.view,arch_db",mail.view_email_template_search,Group by...,分類方式...,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_tree,Groups,群組,
+mail,model,"ir.ui.view,arch_db",mail.view_message_search,Has attachments,有附加檔,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_headers,Headers,Headers,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Headers,Headers,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_hidden,Hidden,Hidden,
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_hidden,Hide the subtype in the follower options,Hide the subtype in the follower options,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_followers_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_partner_needaction_rel_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_id,ID,編號,
+mail,model,"ir.model.fields,field_description",mail.field_publisher_warranty_contract_id,ID,編號,
+mail,model,"ir.model.fields,help",mail.field_mail_alias_alias_parent_thread_id,ID of the parent record holding the alias (example: project holding the task creation alias),ID of the parent record holding the alias (example: project holding the task creation alias),
+mail,model,"ir.model.fields,help",mail.field_mail_alias_mixin_alias_parent_thread_id,ID of the parent record holding the alias (example: project holding the task creation alias),ID of the parent record holding the alias (example: project holding the task creation alias),
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_parent_thread_id,ID of the parent record holding the alias (example: project holding the task creation alias),ID of the parent record holding the alias (example: project holding the task creation alias),
+mail,model,"ir.model.fields,help",mail.field_mail_followers_res_id,Id of the followed resource,Id of the followed resource,
+mail,model,"ir.model.fields,help",mail.field_mail_wizard_invite_res_id,Id of the followed resource,Id of the followed resource,
+mail,code,addons/mail/static/src/xml/client_action.xml,112,Idle,Idle,openerp-web
+mail,model,"ir.model.fields,help",mail.field_calendar_event_message_unread,If checked new messages require your attention.,當有新訊息時通知您。,
+mail,model,"ir.model.fields,help",mail.field_crm_lead_message_unread,If checked new messages require your attention.,當有新訊息時通知您。,
+mail,model,"ir.model.fields,help",mail.field_crm_team_message_unread,If checked new messages require your attention.,當有新訊息時通知您。,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_message_unread,If checked new messages require your attention.,當有新訊息時通知您。,
+mail,model,"ir.model.fields,help",mail.field_mail_test_message_unread,If checked new messages require your attention.,當有新訊息時通知您。,
+mail,model,"ir.model.fields,help",mail.field_mail_thread_message_unread,If checked new messages require your attention.,當有新訊息時通知您。,
+mail,model,"ir.model.fields,help",mail.field_res_partner_message_unread,If checked new messages require your attention.,當有新訊息時通知您。,
+mail,model,"ir.model.fields,help",mail.field_res_users_message_unread,If checked new messages require your attention.,當有新訊息時通知您。,
+mail,model,"ir.model.fields,help",mail.field_calendar_event_message_needaction,"If checked, new messages require your attention.","If checked, new messages require your attention.",
+mail,model,"ir.model.fields,help",mail.field_crm_lead_message_needaction,"If checked, new messages require your attention.","If checked, new messages require your attention.",
+mail,model,"ir.model.fields,help",mail.field_crm_team_message_needaction,"If checked, new messages require your attention.","If checked, new messages require your attention.",
+mail,model,"ir.model.fields,help",mail.field_mail_channel_message_needaction,"If checked, new messages require your attention.","If checked, new messages require your attention.",
+mail,model,"ir.model.fields,help",mail.field_mail_test_message_needaction,"If checked, new messages require your attention.","If checked, new messages require your attention.",
+mail,model,"ir.model.fields,help",mail.field_mail_thread_message_needaction,"If checked, new messages require your attention.","If checked, new messages require your attention.",
+mail,model,"ir.model.fields,help",mail.field_res_partner_message_needaction,"If checked, new messages require your attention.","If checked, new messages require your attention.",
+mail,model,"ir.model.fields,help",mail.field_res_users_message_needaction,"If checked, new messages require your attention.","If checked, new messages require your attention.",
+mail,model,"ir.model.fields,help",mail.field_mail_wizard_invite_send_mail,"If checked, the partners will receive an email warning they have been added in the document's followers.","If checked, the partners will receive an email warning they have been added in the document's followers.",
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_user_signature,"If checked, the user's signature will be appended to the text version of the message","若勾選, 使用者的簽名將附加到郵件的文字版本",
+mail,model,"ir.model.fields,help",mail.field_mail_template_user_signature,"If checked, the user's signature will be appended to the text version of the message","若勾選, 使用者的簽名將附加到郵件的文字版本",
+mail,model,"ir.model.fields,help",mail.field_res_partner_opt_out,"If opt-out is checked, this contact has refused to receive emails for mass mailing and marketing campaign. Filter 'Available for Mass Mailing' allows users to filter the partners when performing mass mailing.","If opt-out is checked, this contact has refused to receive emails for mass mailing and marketing campaign. Filter 'Available for Mass Mailing' allows users to filter the partners when performing mass mailing.",
+mail,model,"ir.model.fields,help",mail.field_res_users_opt_out,"If opt-out is checked, this contact has refused to receive emails for mass mailing and marketing campaign. Filter 'Available for Mass Mailing' allows users to filter the partners when performing mass mailing.","If opt-out is checked, this contact has refused to receive emails for mass mailing and marketing campaign. Filter 'Available for Mass Mailing' allows users to filter the partners when performing mass mailing.",
+mail,model,"ir.model.fields,help",mail.field_mail_mail_scheduled_date,"If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible.","If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible.",
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_scheduled_date,"If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible. Jinja2 placeholders may be used.","If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible. Jinja2 placeholders may be used.",
+mail,model,"ir.model.fields,help",mail.field_mail_template_scheduled_date,"If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible. Jinja2 placeholders may be used.","If set, the queue manager will send the email after the date. If not set, the email will be send as soon as possible. Jinja2 placeholders may be used.",
+mail,model,"ir.model.fields,help",mail.field_base_config_settings_alias_domain,"If you have setup a catch-all email domain redirected to the Odoo server, enter the domain name here.","If you have setup a catch-all email domain redirected to the Odoo server, enter the domain name here.",
+mail,code,addons/mail/models/mail_alias.py,141,Inactive Alias,Inactive Alias,
+mail,code,addons/mail/static/src/js/chat_manager.js,1045,Inbox,收件匣,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,22,Inbox,Inbox,openerp-web
+mail,code,addons/mail/static/src/xml/systray.xml,6,Inbox,Inbox,openerp-web
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_parent_id,Initial thread message.,起始串訊息,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_parent_id,Initial thread message.,起始串訊息,
+mail,model,"ir.model.fields,help",mail.field_mail_message_parent_id,Initial thread message.,起始串訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_internal,Internal Only,Internal Only,
+mail,code,addons/mail/models/mail_alias.py,99,"Invalid expression, it must be a literal python dictionary definition e.g. ""{'field': 'value'}""","Invalid expression, it must be a literal python dictionary definition e.g. ""{'field': 'value'}""",
+mail,code,addons/mail/models/mail_thread.py,1779,Invalid record set: should be called as model (without records) or on single-record recordset,Invalid record set: should be called as model (without records) or on single-record recordset,
+mail,code,addons/mail/controllers/main.py,43,Invalid token in route %s,Invalid token in route %s,
+mail,code,addons/mail/static/src/js/chat_manager.js,630,Invitation,Invitation,openerp-web
+mail,code,addons/mail/wizard/invite.py,54,Invitation to follow %s: %s,Invitation to follow %s: %s,
+mail,code,addons/mail/static/src/js/client_action.js,41,Invite,邀請,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,134,Invite,Invite,openerp-web
+mail,code,addons/mail/static/src/js/followers.js,143,Invite Follower,Invite Follower,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,32,Invite people,Invite people,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,134,Invite people,Invite people,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,653,Invite people to #%s,Invite people to #%s,openerp-web
+mail,model,"ir.model,name",mail.model_mail_wizard_invite,Invite wizard,邀請精靈,
+mail,selection,"mail.channel,public",0,Invited people only,Invited people only,
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_is_follower,Is Follower,Is Follower,
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_is_follower,Is Follower,Is Follower,
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_is_follower,Is Follower,Is Follower,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_is_follower,Is Follower,Is Follower,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_is_follower,Is Follower,Is Follower,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_is_follower,Is Follower,Is Follower,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_is_follower,Is Follower,Is Follower,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_is_follower,Is Follower,Is Follower,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_notification,Is Notification,為通知,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_partner_needaction_rel_is_read,Is Read,Is Read,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_is_subscribed,Is Subscribed,Is Subscribed,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_is_member,Is a member,Is a member,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_is_pinned,Is pinned on the interface,Is pinned on the interface,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_kanban,Join,Join,
+mail,model,"ir.actions.act_window,name",mail.mail_channel_action_view,Join a group,加入群組,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_lang,Language,語言,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_lang,Language,語言,
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_last_post,Last Message Date,最後訊息日期,
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_last_post,Last Message Date,最後訊息日期,
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_last_post,Last Message Date,最後訊息日期,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_last_post,Last Message Date,最後訊息日期,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_last_post,Last Message Date,最後訊息日期,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_last_post,Last Message Date,最後訊息日期,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_last_post,Last Message Date,最後訊息日期,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_last_post,Last Message Date,最後訊息日期,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_followers___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_partner_needaction_rel___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_publisher_warranty_contract___last_update,Last Modified on,最後修改:,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_channel_last_seen_partner_ids,Last Seen,Last Seen,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_seen_message_id,Last Seen,Last Seen,
+mail,model,"ir.model,name",mail.model_mail_channel_partner,Last Seen Many2many,Last Seen Many2many,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_write_uid,Last Updated by,最後更新人,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_write_date,Last Updated on,最後更新時間,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_kanban,Leave,Leave,
+mail,code,addons/mail/models/mail_channel.py,653,Leave this channel,Leave this channel,
+mail,code,addons/mail/static/src/xml/client_action.xml,101,Leave this channel,Leave this channel,openerp-web
+mail,model,"ir.model.fields,help",mail.field_mail_wizard_invite_channel_ids,List of channels that will be added as listeners of the current document.,List of channels that will be added as listeners of the current document.,
+mail,model,"ir.model.fields,help",mail.field_mail_wizard_invite_partner_ids,List of partners that will be added as follower of the current document.,List of partners that will be added as follower of the current document.,
+mail,code,addons/mail/models/mail_channel.py,664,List users in the current channel,List users in the current channel,
+mail,model,"ir.model.fields,field_description",mail.field_mail_followers_channel_id,Listener,Listener,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_channel_partner_ids,Listeners,Listeners,
+mail,code,addons/mail/static/src/js/chatter.js,39,Log,Log,openerp-web
+mail,code,addons/mail/static/src/xml/chatter.xml,59,Log a note. Followers will not be notified.,Log a note. Followers will not be notified.,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_is_log,Log an Internal Note,Log an Internal Note,
+mail,code,addons/mail/static/src/xml/chatter.xml,59,Log an internal note,Log an internal note,openerp-web
+mail,code,addons/mail/static/src/xml/chatter.xml,12,"Log an internal note which will not be sent to followers, but which can be read
+                    by users accessing this document.","Log an internal note which will not be sent to followers, but which can be read
+                    by users accessing this document.",openerp-web
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Mail Channel Form,郵件頻道表單,
+mail,code,addons/mail/models/mail_mail.py,321,Mail Delivery Failed,郵件傳送失敗,
+mail,model,"ir.model,name",mail.model_mail_tracking_value,Mail Tracking Value,Mail Tracking Value,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_notification,Mail has been created to notify people of an existing mail.message,Mail has been created to notify people of an existing mail.message,
+mail,model,"ir.ui.view,arch_db",mail.view_emails_partner_info_form,Mailing Opt-Out,Mailing Opt-Out,
+mail,code,addons/mail/static/src/xml/client_action.xml,135,Mark all as read,全部標示為已讀,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,135,Mark all read,全部標示已讀,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,121,Mark as Read,標示為已讀,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,68,Mark as Todo,標示為待處理,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,115,Mark as Todo,Mark as Todo,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_image_medium,Medium-sized photo,中型尺寸的照片,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_image_medium,"Medium-sized photo of the group. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views.","Medium-sized photo of the group. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views.",
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Members,成員,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_group_ids,Members of those groups will automatically added as followers. Note that they will be able to manage their subscription manually if necessary.,群組成員將自動成為信件追隨者。需注意的是，必要時他們將可以手動管理其訂閱。,
+mail,model,"ir.model,name",mail.model_mail_message,Message,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_mail_message_id,Message,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_partner_needaction_rel_mail_message_id,Message,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_message,Message,訊息,
+mail,model,"ir.ui.view,arch_db",mail.view_message_form,Message,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_mail_message_id,Message ID,訊息 ID,
+mail,model,"ir.model,name",mail.model_mail_notification,Message Notifications,Message Notifications,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_record_name,Message Record Name,訊息記錄名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_record_name,Message Record Name,Message Record Name,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_record_name,Message Record Name,Message Record Name,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_name,Message Type,訊息類別,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_email_to,Message recipients (emails),Message recipients (emails),
+mail,model,"ir.model.fields,help",mail.field_mail_mail_references,"Message references, such as identifiers of previous messages",郵件引用，例如前一個郵件的ID,
+mail,code,addons/mail/static/src/xml/client_action.xml,124,"Message sent in ""","Message sent in """,openerp-web
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_name,"Message subtype gives a more precise type on the message, especially for system notifications. For example, it can be a notification related to a new record (New), or to a stage change in a process (Stage change). Message subtypes allow to precisely tune the notifications the user want to receive on its wall.","Message subtype gives a more precise type on the message, especially for system notifications. For example, it can be a notification related to a new record (New), or to a stage change in a process (Stage change). Message subtypes allow to precisely tune the notifications the user want to receive on its wall.",
+mail,model,"ir.model,name",mail.model_mail_message_subtype,Message subtypes,Message subtypes,
+mail,model,"ir.model.fields,help",mail.field_mail_followers_subtype_ids,"Message subtypes followed, meaning subtypes that will be pushed onto the user's Wall.","Message subtypes followed, meaning subtypes that will be pushed onto the user's Wall.",
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_message_type,"Message type: email for email message, notification for system message, comment for other messages such as user replies",訊息形態：電子郵件訊息是為電子郵件，系統訊息是為通知，其它訊息例如使用者回覆是為註解。,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_message_type,"Message type: email for email message, notification for system message, comment for other messages such as user replies",訊息形態：電子郵件訊息是為電子郵件，系統訊息是為通知，其它訊息例如使用者回覆是為註解。,
+mail,model,"ir.model.fields,help",mail.field_mail_message_message_type,"Message type: email for email message, notification for system message, comment for other messages such as user replies",訊息形態：電子郵件訊息是為電子郵件，系統訊息是為通知，其它訊息例如使用者回覆是為註解。,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_message_id,Message unique identifier,訊息唯一編號,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_message_id,Message unique identifier,訊息唯一編號,
+mail,model,"ir.model.fields,help",mail.field_mail_message_message_id,Message unique identifier,訊息唯一編號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_message_id,Message-Id,訊息-Id,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_message_id,Message-Id,訊息-Id,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_message_id,Message-Id,訊息-Id,
+mail,model,"ir.actions.act_window,name",mail.action_view_mail_message,Messages,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_ids,Messages,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_ids,Messages,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_ids,Messages,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_ids,Messages,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_ids,Messages,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_ids,Messages,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_ids,Messages,訊息,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_ids,Messages,訊息,
+mail,model,"ir.ui.menu,name",mail.menu_mail_message,Messages,訊息,
+mail,model,"ir.ui.view,arch_db",mail.view_message_tree,Messages,訊息,
+mail,model,"ir.ui.view,arch_db",mail.view_message_search,Messages Search,訊息搜尋,
+mail,code,addons/mail/static/src/js/tour.js,20,Messages can be <b>starred</b> to remind you to check back later.,Messages can be <b>starred</b> to remind you to check back later.,openerp-web
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_internal,"Messages with internal subtypes will be visible only by employees, aka members of base_user group","Messages with internal subtypes will be visible only by employees, aka members of base_user group",
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_res_model,Model,模型,
+mail,model,"ir.ui.view,arch_db",mail.view_email_template_search,Model,模型,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_search,Model,模型,
+mail,model,"ir.model.fields,help",mail.field_mail_followers_res_model,Model of the followed resource,Model of the followed resource,
+mail,model,"ir.model.fields,help",mail.field_mail_wizard_invite_res_model,Model of the followed resource,Model of the followed resource,
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_res_model,"Model the subtype applies to. If False, this subtype applies to all models.","Model the subtype applies to. If False, this subtype applies to all models.",
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Month,月,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_name,Name,名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_name,Name,名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_name,Name,名稱,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_name,Name,名稱,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Name,名稱,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_record_name,Name get of the related document.,Name get of the related document.,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_record_name,Name get of the related document.,Name get of the related document.,
+mail,model,"ir.model.fields,help",mail.field_mail_message_record_name,Name get of the related document.,Name get of the related document.,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_report_name,"Name to use for the generated report file (may contain placeholders)
+The extension can be omitted and will then come from the report type.","產生的報表文件命名(可能包含佔位符)
+可以省略分機號碼然後將會成為報表型態.",
+mail,model,"ir.model.fields,help",mail.field_mail_template_report_name,"Name to use for the generated report file (may contain placeholders)
+The extension can be omitted and will then come from the report type.","產生的報表文件命名(可能包含佔位符)
+可以省略分機號碼然後將會成為報表型態.",
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_needaction,Need Action,Need Action,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_needaction,Need Action,Need Action,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_needaction,Need Action,Need Action,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_needaction,Need Action,Need Action,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_needaction,Need Action,Need Action,
+mail,model,"ir.model.fields,help",mail.field_mail_message_needaction,Need Action,Need Action,
+mail,model,"ir.ui.view,arch_db",mail.view_message_search,Need Action,Need Action,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_partner_needaction_rel_res_partner_id,Needaction Recipient,Needaction Recipient,
+mail,selection,"res.partner,notify_email",0,Never,從不,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_new_value_char,New Value Char,New Value Char,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_new_value_datetime,New Value Datetime,New Value Datetime,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_new_value_float,New Value Float,New Value Float,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_new_value_integer,New Value Integer,New Value Integer,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_new_value_monetary,New Value Monetary,New Value Monetary,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_new_value_text,New Value Text,New Value Text,
+mail,code,addons/mail/static/src/js/chat_manager.js,58,New message,New message,openerp-web
+mail,code,addons/mail/static/src/js/window_manager.js,139,New message,New message,openerp-web
+mail,code,addons/mail/static/src/xml/chatter.xml,56,New message,New message,openerp-web
+mail,code,addons/mail/static/src/xml/systray.xml,24,New message,New message,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,146,New messages,New messages,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,25,New messages appear here.,New messages appear here.,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,79,New people,New people,openerp-web
+mail,code,addons/mail/static/src/js/followers.js,218,No follower,No follower,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,16,No matches found,No matches found,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,17,No message matches your search. Try to change your search filters.,No message matches your search. Try to change your search filters.,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,28,No starred message,No starred message,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_no_auto_thread,No threading for answers,No threading for answers,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_no_auto_thread,No threading for answers,No threading for answers,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_no_auto_thread,No threading for answers,No threading for answers,
+mail,model,"mail.message.subtype,name",mail.mt_note,Note,備註,
+mail,code,addons/mail/static/src/xml/thread.xml,72,Note by,Note by,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Notification,通知,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_notification_ids,Notifications,Notifications,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_notification_ids,Notifications,Notifications,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_notification_ids,Notifications,Notifications,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_notify,Notify followers,Notify followers,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_notify,Notify followers of the document (mass post only),Notify followers of the document (mass post only),
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_needaction_counter,Number of Actions,Number of Actions,
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_needaction_counter,Number of Actions,Number of Actions,
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_needaction_counter,Number of Actions,Number of Actions,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_needaction_counter,Number of Actions,Number of Actions,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_needaction_counter,Number of Actions,Number of Actions,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_needaction_counter,Number of Actions,Number of Actions,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_needaction_counter,Number of Actions,Number of Actions,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_needaction_counter,Number of Actions,Number of Actions,
+mail,model,"ir.model.fields,help",mail.field_calendar_event_message_needaction_counter,Number of messages which requires an action,Number of messages which requires an action,
+mail,model,"ir.model.fields,help",mail.field_crm_lead_message_needaction_counter,Number of messages which requires an action,Number of messages which requires an action,
+mail,model,"ir.model.fields,help",mail.field_crm_team_message_needaction_counter,Number of messages which requires an action,Number of messages which requires an action,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_message_needaction_counter,Number of messages which requires an action,Number of messages which requires an action,
+mail,model,"ir.model.fields,help",mail.field_mail_test_message_needaction_counter,Number of messages which requires an action,Number of messages which requires an action,
+mail,model,"ir.model.fields,help",mail.field_mail_thread_message_needaction_counter,Number of messages which requires an action,Number of messages which requires an action,
+mail,model,"ir.model.fields,help",mail.field_res_partner_message_needaction_counter,Number of messages which requires an action,Number of messages which requires an action,
+mail,model,"ir.model.fields,help",mail.field_res_users_message_needaction_counter,Number of messages which requires an action,Number of messages which requires an action,
+mail,model,"ir.model.fields,help",mail.field_calendar_event_message_unread_counter,Number of unread messages,Number of unread messages,
+mail,model,"ir.model.fields,help",mail.field_crm_lead_message_unread_counter,Number of unread messages,Number of unread messages,
+mail,model,"ir.model.fields,help",mail.field_crm_team_message_unread_counter,Number of unread messages,Number of unread messages,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_message_unread_counter,Number of unread messages,Number of unread messages,
+mail,model,"ir.model.fields,help",mail.field_mail_test_message_unread_counter,Number of unread messages,Number of unread messages,
+mail,model,"ir.model.fields,help",mail.field_mail_thread_message_unread_counter,Number of unread messages,Number of unread messages,
+mail,model,"ir.model.fields,help",mail.field_res_partner_message_unread_counter,Number of unread messages,Number of unread messages,
+mail,model,"ir.model.fields,help",mail.field_res_users_message_unread_counter,Number of unread messages,Number of unread messages,
+mail,model,"ir.ui.view,arch_db",mail.message_user_assigned,Odoo,Odoo,
+mail,code,addons/mail/static/src/js/client_action.js,130,Odoo has now the permission to send you native notifications on this device.,Odoo has now the permission to send you native notifications on this device.,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,11,Odoo needs your permission to,Odoo needs your permission to,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,128,Odoo will not have the permission to send native notifications on this device.,Odoo will not have the permission to send native notifications on this device.,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,113,Offline,Offline,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_old_value_char,Old Value Char,Old Value Char,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_old_value_datetime,Old Value DateTime,Old Value DateTime,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_old_value_float,Old Value Float,Old Value Float,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_old_value_integer,Old Value Integer,Old Value Integer,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_old_value_monetary,Old Value Monetary,Old Value Monetary,
+mail,model,"ir.model.fields,field_description",mail.field_mail_tracking_value_old_value_text,Old Value Text,Old Value Text,
+mail,code,addons/mail/static/src/js/tour.js,24,"Once a message has been starred, you can come back and review it at any time here.","Once a message has been starred, you can come back and review it at any time here.",openerp-web
+mail,code,addons/mail/static/src/js/followers.js,220,One follower,一位關注者,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,111,Online,Online,openerp-web
+mail,selection,"mail.channel.partner,fold_state",0,Open,開啟,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_form,Open Document,Open Document,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_form,Open Parent Document,Open Parent Document,
+mail,code,addons/mail/static/src/xml/client_action.xml,138,Open channel settings,Open channel settings,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,48,Open chat,Open chat,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_opt_out,Opt-Out,不參加,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_opt_out,Opt-Out,不參加,
+mail,model,"ir.model.fields,help",mail.field_mail_alias_alias_force_thread_id,"Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.","Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.",
+mail,model,"ir.model.fields,help",mail.field_mail_alias_mixin_alias_force_thread_id,"Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.","Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.",
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_force_thread_id,"Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.","Optional ID of a thread (record) to which all incoming messages will be attached, even if they did not reply to it. If set, this will disable the creation of new records completely.",
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_mail_server_id,"Optional preferred server for outgoing mails. If not set, the highest priority one will be used.",可選擇伺服器發送的郵件。如果沒有設置，優先級最高的將被使用。,
+mail,model,"ir.model.fields,help",mail.field_mail_template_mail_server_id,"Optional preferred server for outgoing mails. If not set, the highest priority one will be used.",可選擇伺服器發送的郵件。如果沒有設置，優先級最高的將被使用。,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_report_template,Optional report to print and attach,選擇報表列印與附加,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_report_template,Optional report to print and attach,選擇報表列印與附加,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_lang,"Optional translation language (ISO code) to select when sending out an email. If not set, the english version will be used. This should usually be a placeholder expression that provides the appropriate language, e.g. ${object.partner_id.lang}.","Optional translation language (ISO code) to select when sending out an email. If not set, the english version will be used. This should usually be a placeholder expression that provides the appropriate language, e.g. ${object.partner_id.lang}.",
+mail,model,"ir.model.fields,help",mail.field_mail_template_lang,"Optional translation language (ISO code) to select when sending out an email. If not set, the english version will be used. This should usually be a placeholder expression that provides the appropriate language, e.g. ${object.partner_id.lang}.","Optional translation language (ISO code) to select when sending out an email. If not set, the english version will be used. This should usually be a placeholder expression that provides the appropriate language, e.g. ${object.partner_id.lang}.",
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_null_value,Optional value to use if the target field is empty,若欄位是空的需選擇使用值,
+mail,model,"ir.model.fields,help",mail.field_mail_template_null_value,Optional value to use if the target field is empty,若欄位是空的需選擇使用值,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Outgoing,外送,
+mail,selection,"mail.mail,state",0,Outgoing,外送,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_mail_server_id,Outgoing Mail Server,外送郵件伺服器,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_mail_server_id,Outgoing Mail Server,外送郵件伺服器,
+mail,model,"ir.model,name",mail.model_mail_mail,Outgoing Mails,送出信件,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_mail_server_id,Outgoing mail server,外送郵件伺服器,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_mail_server_id,Outgoing mail server,外送郵件伺服器,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_mail_server_id,Outgoing mail server,外送郵件伺服器,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Override author's email,Override author's email,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_user_id,Owner,所有者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_user_id,Owner,所有者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_user_id,Owner,所有者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_parent_id,Parent,上層,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_parent_id,Parent Message,夥伴訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_parent_id,Parent Message,夥伴訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_parent_id,Parent Message,夥伴訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_parent_model_id,Parent Model,母模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_parent_model_id,Parent Model,母模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_parent_model_id,Parent Model,母模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_parent_thread_id,Parent Record Thread ID,Parent Record Thread ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_parent_thread_id,Parent Record Thread ID,Parent Record Thread ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_parent_thread_id,Parent Record Thread ID,Parent Record Thread ID,
+mail,model,"ir.model.fields,help",mail.field_mail_alias_alias_parent_model_id,Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model)),Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model)),
+mail,model,"ir.model.fields,help",mail.field_mail_alias_mixin_alias_parent_model_id,Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model)),Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model)),
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_parent_model_id,Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model)),Parent model holding the alias. The model holding the alias reference is not necessarily the model given by alias_model_id (example: project (parent_model) and task (model)),
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_parent_id,"Parent subtype, used for automatic subscription. This field is not correctly named. For example on a project, the parent_id of project subtypes refers to task-related subtypes.","Parent subtype, used for automatic subscription. This field is not correctly named. For example on a project, the parent_id of project subtypes refers to task-related subtypes.",
+mail,model,"ir.model,name",mail.model_res_partner,Partner,伙伴,
+mail,model,"ir.actions.act_window,name",mail.action_partner_mass_mail,Partner Mass Mailing,Partner Mass Mailing,
+mail,code,addons/mail/models/res_partner.py,39,Partner Profile,Partner Profile,
+mail,model,"ir.ui.view,arch_db",mail.res_partner_opt_out_search,Partners that did not ask not to be included in mass mailing campaigns,Partners that did not ask not to be included in mass mailing campaigns,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_needaction_partner_ids,Partners with Need Action,Partners with Need Action,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_needaction_partner_ids,Partners with Need Action,Partners with Need Action,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_needaction_partner_ids,Partners with Need Action,Partners with Need Action,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_auto_delete,"Permanently delete this email after sending it, to save space",永久刪除已發送的郵件以節省空間,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_auto_delete,"Permanently delete this email after sending it, to save space",永久刪除已發送的郵件以節省空間,
+mail,model,"ir.model.fields,help",mail.field_mail_template_auto_delete,"Permanently delete this email after sending it, to save space",永久刪除已發送的郵件以節省空間,
+mail,code,addons/mail/static/src/js/client_action.js,128,Permission denied,Permission denied,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,130,Permission granted,Permission granted,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_image,Photo,照片,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_copyvalue,Placeholder Expression,Placeholder Expression,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_copyvalue,Placeholder Expression,Placeholder Expression,
+mail,code,addons/mail/static/src/js/chatter.js,188,Please complete partner's informations,請完成夥伴的資訊,openerp-web
+mail,code,addons/mail/static/src/js/many2many_tags_email.js,67,Please complete partner's informations and Email,Please complete partner's informations and Email,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.view_server_action_form_template,Please set the Base Model before setting the action details.,Please set the Base Model before setting the action details.,
+mail,code,addons/mail/static/src/js/composer.js,647,"Please, wait while the file is uploading.",檔案上傳中，請稍候。,openerp-web
+mail,model,"ir.model.fields,help",mail.field_mail_alias_alias_contact,"Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+","Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+",
+mail,model,"ir.model.fields,help",mail.field_mail_alias_mixin_alias_contact,"Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+","Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+",
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_contact,"Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+","Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+",
+mail,model,"ir.model.fields,help",mail.field_res_users_alias_contact,"Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+","Policy to post a message on the document using the mailgateway.
+- everyone: everyone can post
+- partners: only authenticated partners
+- followers: only followers of the related document or members of following channels
+",
+mail,model,"ir.model.fields,help",mail.field_res_partner_notify_email,"Policy to receive emails for new messages pushed to your personal Inbox:
+- Never: no emails are sent
+- All Messages: for every notification you receive in your Inbox","Policy to receive emails for new messages pushed to your personal Inbox:
+- Never: no emails are sent
+- All Messages: for every notification you receive in your Inbox",
+mail,model,"ir.model.fields,help",mail.field_res_users_notify_email,"Policy to receive emails for new messages pushed to your personal Inbox:
+- Never: no emails are sent
+- All Messages: for every notification you receive in your Inbox","Policy to receive emails for new messages pushed to your personal Inbox:
+- Never: no emails are sent
+- All Messages: for every notification you receive in your Inbox",
+mail,model,"ir.ui.view,arch_db",mail.message_user_assigned,Powered by,Powered by,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Preferred reply address,Preferred reply address,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_reply_to,Preferred response address (placeholders may be used here),首選的回覆地址（佔位符可以用在這裡）,
+mail,model,"ir.model.fields,help",mail.field_mail_template_reply_to,Preferred response address (placeholders may be used here),首選的回覆地址（佔位符可以用在這裡）,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Preview,Preview,
+mail,model,"ir.ui.view,arch_db",mail.email_template_preview_form,Preview of,Preview of,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_public,Privacy,隱私,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Privacy,隱私,
+mail,code,addons/mail/static/src/xml/client_action.xml,53,Private Channels,Private Channels,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,142,Public Channels,Public Channels,openerp-web
+mail,code,addons/mail/wizard/mail_compose_message.py,179,Re:,Re:,
+mail,selection,"mail.notification,email_status",0,Ready to Send,Ready to Send,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Received,已接收,
+mail,selection,"mail.mail,state",0,Received,已接收,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_partner_partner_id,Recipient,Recipient,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_partner_ids,Recipients,收件者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_partner_ids,Recipients,收件者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_partner_ids,Recipients,收件者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_partner_ids,Recipients,收件者,
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Recipients,收件者,
+mail,model,"ir.ui.view,arch_db",mail.view_message_form,Recipients,收件者,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_alias_force_thread_id,Record Thread ID,Record Thread ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_alias_mixin_alias_force_thread_id,Record Thread ID,Record Thread ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_alias_force_thread_id,Record Thread ID,Record Thread ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_references,References,參照,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_res_id,Related Document ID,相關文件 ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_followers_res_id,Related Document ID,相關文件 ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_res_id,Related Document ID,相關文件 ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_id,Related Document ID,相關文件 ID,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_res_id,Related Document ID,相關文件 ID,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_model,Related Document Model,相關文件模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_model,Related Document Model,相關文件模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_followers_res_model,Related Document Model,相關文件模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_model,Related Document Model,相關文件模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_model,Related Document Model,相關文件模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_model,Related Document Model,相關文件模型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_res_model,Related Document Model,相關文件模型,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tracking_value_form,Related Message,Related Message,
+mail,model,"ir.model.fields,field_description",mail.field_mail_followers_partner_id,Related Partner,相關夥伴,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_relation_field,Relation field,關聯欄位,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Remove the contextual action to use this template on related documents,Remove the contextual action to use this template on related documents,
+mail,code,addons/mail/static/src/xml/followers.xml,52,Remove this follower,刪除此關注者,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,118,Reply,回覆,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Reply,回覆,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_reply_to,Reply email address. Setting the reply_to bypasses the automatic thread creation.,Reply email address. Setting the reply_to bypasses the automatic thread creation.,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_reply_to,Reply email address. Setting the reply_to bypasses the automatic thread creation.,Reply email address. Setting the reply_to bypasses the automatic thread creation.,
+mail,model,"ir.model.fields,help",mail.field_mail_message_reply_to,Reply email address. Setting the reply_to bypasses the automatic thread creation.,Reply email address. Setting the reply_to bypasses the automatic thread creation.,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_reply_to,Reply-To,回覆給,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_reply_to,Reply-To,回覆給,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_reply_to,Reply-To,回覆給,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_reply_to,Reply-To,回覆給,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_reply_to,Reply-To,回覆給,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_report_name,Report Filename,報表檔名,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_report_name,Report Filename,報表檔名,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Retry,重試,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tree,Retry,重試,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_body_html,Rich-text Contents,Rich-text 內容,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_body_html,Rich-text/HTML message,Rich-text/HTML 訊息,
+mail,code,addons/mail/models/mail_thread.py,833,Routing mail with Message-Id %s: route %s: %s,Routing mail with Message-Id %s: route %s: %s,
+mail,model,"ir.ui.view,arch_db",mail.view_email_template_search,SMTP Server,SMTP 伺服器,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_res_id,Sample Document,文件範本,
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Save as a new template,另存新的範本,
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Save as new template,Save as new template,
+mail,code,addons/mail/static/src/js/chat_window.js,36,Say something,Say something,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_scheduled_date,Scheduled Date,Scheduled Date,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_scheduled_date,Scheduled Date,Scheduled Date,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_scheduled_date,Scheduled Send Date,Scheduled Send Date,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Scheduled Send Date,Scheduled Send Date,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_search,Search Alias,搜尋別名,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_search,Search Groups,搜尋群組,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_model_object_field,"Select target field from the related document model.
+If it is a relationship field you will be able to select a target field at the destination of the relationship.","從相關文件類型選擇目標
+若它是關聯欄位，您就可以在這關聯關係中，取得這欄位",
+mail,model,"ir.model.fields,help",mail.field_mail_template_model_object_field,"Select target field from the related document model.
+If it is a relationship field you will be able to select a target field at the destination of the relationship.","從相關文件類型選擇目標
+若它是關聯欄位，您就可以在這關聯關係中，取得這欄位",
+mail,selection,"mail.channel,public",0,Selected group of users,Selected group of users,
+mail,code,addons/mail/static/src/js/composer.js,371,Send,傳送,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Send,傳送,
+mail,model,"ir.model.fields,field_description",mail.field_mail_wizard_invite_send_mail,Send Email,Send Email,
+mail,code,addons/mail/models/mail_template.py,279,Send Mail (%s),傳送郵件 (%s),
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Send Now,立即傳送,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tree,Send Now,立即傳送,
+mail,code,addons/mail/static/src/xml/chatter.xml,56,Send a message,Send a message,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_email_send,Send messages by email,Send messages by email,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_email_from,"Sender address (placeholders may be used here). If not set, the default value will be the author's email alias if configured, or email address.","Sender address (placeholders may be used here). If not set, the default value will be the author's email alias if configured, or email address.",
+mail,model,"ir.model.fields,help",mail.field_ir_act_server_email_from,"Sender address (placeholders may be used here). If not set, the default value will be the author's email alias if configured, or email address.","Sender address (placeholders may be used here). If not set, the default value will be the author's email alias if configured, or email address.",
+mail,model,"ir.model.fields,help",mail.field_mail_template_email_from,"Sender address (placeholders may be used here). If not set, the default value will be the author's email alias if configured, or email address.","Sender address (placeholders may be used here). If not set, the default value will be the author's email alias if configured, or email address.",
+mail,code,addons/mail/static/src/xml/client_action.xml,97,Sends messages by email,Sends messages by email,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Sent,已傳送,
+mail,selection,"mail.mail,state",0,Sent,已傳送,
+mail,selection,"mail.notification,email_status",0,Sent,已傳送,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_res_partner_needaction_rel_is_email,Sent by Email,Sent by Email,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_sequence,Sequence,序列,
+mail,code,addons/mail/static/src/xml/client_action.xml,138,Settings,設定,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_shortcode_type,Shortcode type,Shortcode type,
+mail,model,"ir.ui.view,arch_db",mail.mail_shortcode_view_form,Shortcodes,Shortcodes,
+mail,model,"ir.ui.view,arch_db",mail.mail_shortcode_view_tree,Shortcodes,Shortcodes,
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_source,Shortcut,快捷鍵,
+mail,code,addons/mail/models/mail_channel.py,633,Show an helper message,Show an helper message,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_ref_ir_value,Sidebar Button,側邊欄按鈕,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_ref_ir_value,Sidebar Button,側邊欄按鈕,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_ref_ir_act_window,Sidebar action,側邊欄動作,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_ref_ir_act_window,Sidebar action,側邊欄動作,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_ref_ir_act_window,Sidebar action to make this template available on records of the related document model,側邊欄動作使這個範本記錄相關的文件類型,
+mail,model,"ir.model.fields,help",mail.field_mail_template_ref_ir_act_window,Sidebar action to make this template available on records of the related document model,側邊欄動作使這個範本記錄相關的文件類型,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_ref_ir_value,Sidebar button to open the sidebar action,側邊欄按鈕來打開側邊欄動作,
+mail,model,"ir.model.fields,help",mail.field_mail_template_ref_ir_value,Sidebar button to open the sidebar action,側邊欄按鈕來打開側邊欄動作,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_author_avatar,"Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required.","Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required.",
+mail,model,"ir.model.fields,help",mail.field_mail_mail_author_avatar,"Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required.","Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required.",
+mail,model,"ir.model.fields,help",mail.field_mail_message_author_avatar,"Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required.","Small-sized image of this contact. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required.",
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_image_small,Small-sized photo,小尺寸照片,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_image_small,"Small-sized photo of the group. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required.",群組中小尺寸照片。會被自動縮為 64x64px 影像，且將保留比例。當需要小影像時，請使用此欄位。,
+mail,selection,"mail.shortcode,shortcode_type",0,Smiley,Smiley,
+mail,code,addons/mail/static/src/js/chat_manager.js,1051,Starred,已加星號,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,28,Starred,Starred,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_starred,Starred,已加星號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_starred,Starred,已加星號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_starred,Starred,已加星號,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_state,Status,狀態,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,Status,狀態,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Status,狀態,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_sub_model_object_field,Sub-field,子欄位,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_sub_model_object_field,Sub-field,子欄位,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_sub_object,Sub-model,子類型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_sub_object,Sub-model,子類型,
+mail,code,addons/mail/static/src/xml/composer.xml,8,Subject,主旨,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_subject,Subject,主旨,
+mail,model,"ir.model.fields,field_description",mail.field_ir_act_server_subject,Subject,主旨,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_subject,Subject,主旨,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_subject,Subject,主旨,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subject,Subject,主旨,
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_subject,Subject,主旨,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_subject,Subject (placeholders may be used here),主旨 (佔位符可在這裡使用),
+mail,model,"ir.model.fields,help",mail.field_ir_act_server_subject,Subject (placeholders may be used here),主旨 (佔位符可在這裡使用),
+mail,model,"ir.model.fields,help",mail.field_mail_template_subject,Subject (placeholders may be used here),主旨 (佔位符可在這裡使用),
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Subject (placeholders may be used here),主旨 (佔位符可在這裡使用),
+mail,model,"ir.ui.view,arch_db",mail.email_compose_message_wizard_form,Subject...,Subject...,
+mail,code,addons/mail/static/src/xml/thread.xml,130,Subject:,Subject:,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_shortcode_substitution,Substitution,Substitution,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_subtype_id,Subtype,次類型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_followers_subtype_ids,Subtype,次類型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_subtype_id,Subtype,次類型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_subtype_id_1647,Subtype,次類型,
+mail,model,"ir.ui.view,arch_db",mail.view_message_subtype_tree,Subtype,次類型,
+mail,model,"ir.actions.act_window,name",mail.action_view_message_subtype,Subtypes,Subtypes,
+mail,model,"ir.ui.menu,name",mail.menu_message_subtype,Subtypes,Subtypes,
+mail,selection,"mail.compose.message,message_type",0,System notification,系統通知,
+mail,selection,"mail.message,message_type",0,System notification,系統通知,
+mail,model,"ir.actions.act_window,name",mail.wizard_email_template_preview,Template Preview,預覽範本,
+mail,model,"ir.actions.act_window,name",mail.action_email_template_tree_all,Templates,範本,
+mail,model,"ir.ui.menu,name",mail.menu_email_templates,Templates,範本,
+mail,model,"ir.ui.view,arch_db",mail.email_template_form,Templates,範本,
+mail,model,"ir.ui.view,arch_db",mail.email_template_tree,Templates,範本,
+mail,model,"ir.ui.view,arch_db",mail.view_email_template_search,Templates,範本,
+mail,model,"ir.model,name",mail.model_mail_test,Test Mail Model,Test Mail Model,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_id,The email address associated with this group. New emails received will automatically create new topics.,The email address associated with this group. New emails received will automatically create new topics.,
+mail,model,"ir.model.fields,help",mail.field_mail_shortcode_substitution,The escaped html code replacing the shortcut,The escaped html code replacing the shortcut,
+mail,model,"ir.model.fields,help",mail.field_mail_alias_alias_model_id,The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task),The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task),
+mail,model,"ir.model.fields,help",mail.field_mail_alias_mixin_alias_model_id,The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task),The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task),
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_model_id,The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task),The model (Odoo Document Kind) to which this alias corresponds. Any incoming email that does not reply to an existing record will cause the creation of a new record of this model (e.g. a Project Task),
+mail,model,"ir.model.fields,help",mail.field_mail_alias_alias_name,"The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>","The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>",
+mail,model,"ir.model.fields,help",mail.field_mail_alias_mixin_alias_name,"The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>","The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>",
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_name,"The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>","The name of the email alias, e.g. 'jobs' if you want to catch emails for <jobs@example.odoo.com>",
+mail,model,"ir.model.fields,help",mail.field_mail_alias_alias_user_id,"The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.","The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.",
+mail,model,"ir.model.fields,help",mail.field_mail_alias_mixin_alias_user_id,"The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.","The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.",
+mail,model,"ir.model.fields,help",mail.field_mail_channel_alias_user_id,"The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.","The owner of records created upon receiving emails on this alias. If this field is not set the system will attempt to find the right owner based on the sender (From) address, or will use the Administrator account if no system user is found for that address.",
+mail,code,addons/mail/models/mail_message.py,574,"The requested operation cannot be completed due to security restrictions. Please contact your system administrator.
+
+(Document type: %s, Operation: %s)","因安全限制，操作無法完成。請聯絡系統管理員。
+((Document type: %s, Operation: %s))",
+mail,code,addons/mail/models/mail_message.py,669,"The requested operation cannot be completed due to security restrictions. Please contact your system administrator.
+
+(Document type: %s, Operation: %s)","因安全限制，操作無法完成。請聯絡系統管理員。
+((Document type: %s, Operation: %s))",
+mail,model,"ir.model.fields,help",mail.field_mail_shortcode_source,The shortcut which must be replaced in the Chat Messages,The shortcut which must be replaced in the Chat Messages,
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_model_id,The type of document this template can be used with,The type of document this template can be used with,
+mail,model,"ir.model.fields,help",mail.field_mail_template_model_id,The type of document this template can be used with,The type of document this template can be used with,
+mail,model,"ir.ui.view,arch_db",mail.view_server_action_form_template,"The values displayed hereunder are informative. When sending the email, the values
+                                will be taken from the email template.","The values displayed hereunder are informative. When sending the email, the values
+                                will be taken from the email template.",
+mail,model,"ir.ui.view,arch_db",mail.message_origin_link,This,This,
+mail,model,"ir.model.fields,help",mail.field_mail_channel_image,"This field holds the image used as photo for the group, limited to 1024x1024px.","此欄位保存群組照片所使用的影像, 限於 1024x1024px。",
+mail,model,"ir.model.fields,help",mail.field_mail_channel_public,This group is visible by non members. Invisible groups can add members through the invite button.,This group is visible by non members. Invisible groups can add members through the invite button.,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_search,Thread,討論串,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_email_to,To,給,
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_email_to,To (Emails),To (Emails),
+mail,model,"ir.model.fields,field_description",mail.field_ir_act_server_email_to,To (Emails),To (Emails),
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_email_to,To (Emails),To (Emails),
+mail,model,"ir.model.fields,field_description",mail.field_email_template_preview_partner_to,To (Partners),To (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_ir_act_server_partner_to,To (Partners),To (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_recipient_ids,To (Partners),To (Partners),
+mail,model,"ir.model.fields,field_description",mail.field_mail_template_partner_to,To (Partners),To (Partners),
+mail,code,addons/mail/static/src/xml/extended_chat_window.xml,7,To:,To:,openerp-web
+mail,code,addons/mail/static/src/xml/chatter.xml,20,To: Followers of,To: Followers of,openerp-web
+mail,code,addons/mail/static/src/js/thread.js,231,Today,Today,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,133,Toggle Channels,Toggle Channels,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Topics discussed in this group...,Topics discussed in this group...,
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_tracking_value_ids,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,
+mail,model,"ir.model.fields,help",mail.field_mail_mail_tracking_value_ids,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,
+mail,model,"ir.model.fields,help",mail.field_mail_message_tracking_value_ids,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,Tracked values are stored in a separate model. This field allow to reconstruct the tracking and to generate statistics on the model.,
+mail,model,"ir.ui.view,arch_db",mail.view_message_form,Tracking,追蹤,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tracking_value_form,Tracking Value,Tracking Value,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tracking_value_tree,Tracking Value,Tracking Value,
+mail,model,"ir.actions.act_window,name",mail.action_view_mail_tracking_value,Tracking Values,Tracking Values,
+mail,model,"ir.ui.menu,name",mail.menu_mail_tracking_value,Tracking Values,Tracking Values,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_tracking_value_ids,Tracking values,Tracking values,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_tracking_value_ids,Tracking values,Tracking values,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_tracking_value_ids,Tracking values,Tracking values,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_message_type,Type,類型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_mail_message_type,Type,類型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_message_message_type,Type,類型,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_uuid,UUID,UUID,
+mail,code,addons/mail/models/mail_message.py,31,"Unable to send email, please configure the sender's email address.","Unable to send email, please configure the sender's email address.",
+mail,code,addons/mail/static/src/xml/client_action.xml,119,Undo,Undo,openerp-web
+mail,code,addons/mail/models/mail_thread.py,703,Unfollow,取消跟隨,
+mail,code,addons/mail/static/src/xml/followers.xml,23,Unfollow,Unfollow,openerp-web
+mail,sql_constraint,mail.alias,0,"Unfortunately this email alias is already used, please choose a unique one",此郵件別名已被使用，請另選別名。,
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_unread,Unread Messages,未讀訊息,
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_unread,Unread Messages,未讀訊息,
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_unread,Unread Messages,未讀訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_unread,Unread Messages,未讀訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_unread,Unread Messages,未讀訊息,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_unread,Unread Messages,未讀訊息,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_unread,Unread Messages,未讀訊息,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_unread,Unread Messages,未讀訊息,
+mail,model,"ir.model.fields,field_description",mail.field_calendar_event_message_unread_counter,Unread Messages Counter,Unread Messages Counter,
+mail,model,"ir.model.fields,field_description",mail.field_crm_lead_message_unread_counter,Unread Messages Counter,Unread Messages Counter,
+mail,model,"ir.model.fields,field_description",mail.field_crm_team_message_unread_counter,Unread Messages Counter,Unread Messages Counter,
+mail,model,"ir.model.fields,field_description",mail.field_mail_channel_message_unread_counter,Unread Messages Counter,Unread Messages Counter,
+mail,model,"ir.model.fields,field_description",mail.field_mail_test_message_unread_counter,Unread Messages Counter,Unread Messages Counter,
+mail,model,"ir.model.fields,field_description",mail.field_mail_thread_message_unread_counter,Unread Messages Counter,Unread Messages Counter,
+mail,model,"ir.model.fields,field_description",mail.field_res_partner_message_unread_counter,Unread Messages Counter,Unread Messages Counter,
+mail,model,"ir.model.fields,field_description",mail.field_res_users_message_unread_counter,Unread Messages Counter,Unread Messages Counter,
+mail,model,"ir.ui.view,arch_db",mail.view_message_search,Unread messages,Unread messages,
+mail,code,addons/mail/static/src/xml/client_action.xml,136,Unstar all,Unstar all,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,136,Unstar all messages,Unstar all messages,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,137,Unsubscribe,Unsubscribe,openerp-web
+mail,code,addons/mail/static/src/xml/client_action.xml,137,Unsubscribe from channel,Unsubscribe from channel,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,186,Uploading,Uploading,openerp-web
+mail,code,addons/mail/static/src/js/composer.js,647,Uploading error,上傳錯誤,openerp-web
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_use_active_domain,Use active domain,Use active domain,
+mail,model,"ir.model.fields,field_description",mail.field_mail_compose_message_template_id,Use template,Use template,
+mail,model,"ir.model.fields,help",mail.field_mail_message_subtype_sequence,Used to order subtypes.,Used to order subtypes.,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_alias_search,User,用戶,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,User,用戶,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_tree,User,用戶,
+mail,model,"ir.model,name",mail.model_res_users,Users,用戶,
+mail,code,addons/mail/models/mail_channel.py,677,Users in this channel: %s %s and you.,Users in this channel: %s %s and you.,
+mail,code,addons/mail/models/mail_thread.py,671,View,檢視,
+mail,code,addons/mail/models/mail_thread.py,673,View,檢視,
+mail,model,"ir.ui.view,arch_db",mail.message_user_assigned,View,檢視,
+mail,code,addons/mail/static/src/js/followers.js,330,"Warning! 
+ If you remove a follower, he won't be notified of any email or discussion on this document. Do you really want to remove this follower ?","Warning! 
+ If you remove a follower, he won't be notified of any email or discussion on this document. Do you really want to remove this follower ?",openerp-web
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_sub_model_object_field,"When a relationship field is selected as first field, this field lets you select the target field within the destination document model (sub-model).","當相關欄位已被選擇為第一欄位, 這欄位，讓您選擇目標欄位內的目標文件類型（子類型型）。",
+mail,model,"ir.model.fields,help",mail.field_mail_template_sub_model_object_field,"When a relationship field is selected as first field, this field lets you select the target field within the destination document model (sub-model).","當相關欄位已被選擇為第一欄位, 這欄位，讓您選擇目標欄位內的目標文件類型（子類型型）。",
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_sub_object,"When a relationship field is selected as first field, this field shows the document model the relationship goes to.","當這相關欄位是選為第一欄位, this field shows the document model the relationship goes to.",
+mail,model,"ir.model.fields,help",mail.field_mail_template_sub_object,"When a relationship field is selected as first field, this field shows the document model the relationship goes to.","當這相關欄位是選為第一欄位, this field shows the document model the relationship goes to.",
+mail,model,"ir.model.fields,help",mail.field_mail_compose_message_is_log,Whether the message is an internal note (comment mode only),Whether the message is an internal note (comment mode only),
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,Who can follow the group's activities?,Who can follow the group's activities?,
+mail,code,addons/mail/static/src/xml/composer.xml,18,Write something...,Write something...,openerp-web
+mail,code,addons/mail/static/src/js/thread.js,233,Yesterday,Yesterday,openerp-web
+mail,code,addons/mail/static/src/js/client_action.js,78,You added <b>%s</b> to the conversation.,You added <b>%s</b> to the conversation.,openerp-web
+mail,code,addons/mail/models/mail_channel.py,674,You are alone in this channel.,You are alone in this channel.,
+mail,code,addons/mail/models/mail_channel.py,643,You are in a private conversation with <b>@%s</b>.,You are in a private conversation with <b>@%s</b>.,
+mail,code,addons/mail/models/mail_channel.py,638,You are in channel <b>#%s</b>.,You are in channel <b>#%s</b>.,
+mail,code,addons/mail/static/src/xml/thread.xml,29,"You can mark any message as 'starred', and it shows up in this channel.","You can mark any message as 'starred', and it shows up in this channel.",openerp-web
+mail,code,addons/mail/models/res_users.py,45,"You cannot create a new user from here.
+ To create new user please go to configuration panel.","You cannot create a new user from here.
+ To create new user please go to configuration panel.",
+mail,code,addons/mail/models/mail_channel.py,133,"You cannot delete those groups, as the Whole Company group is required by other modules.","You cannot delete those groups, as the Whole Company group is required by other modules.",
+mail,code,addons/mail/models/mail_thread.py,346,You could also add a new %(document)s by sending an email to: %(email_link)s.,You could also add a new %(document)s by sending an email to: %(email_link)s.,
+mail,model,"ir.ui.view,arch_db",mail.message_user_assigned,You have been assigned to the,You have been assigned to the,
+mail,code,addons/mail/static/src/js/chat_manager.js,630,You have been invited to: ,You have been invited to: ,openerp-web
+mail,model,"ir.model.fields,help",mail.field_email_template_preview_attachment_ids,"You may attach files to this template, to be added to all emails created from this template","這個範本您可以加入附件, 從這範本新建所有郵件",
+mail,model,"ir.model.fields,help",mail.field_mail_template_attachment_ids,"You may attach files to this template, to be added to all emails created from this template","這個範本您可以加入附件, 從這範本新建所有郵件",
+mail,code,addons/mail/static/src/js/chat_manager.js,526,You unpinned your conversation with <b>%s</b>.,You unpinned your conversation with <b>%s</b>.,openerp-web
+mail,code,addons/mail/static/src/js/chat_manager.js,524,You unsubscribed from <b>%s</b>.,You unsubscribed from <b>%s</b>.,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.view_server_action_form_template,Your template does not defined the email address of the sender. Please update your template.,Your template does not defined the email address of the sender. Please update your template.,
+mail,code,addons/mail/models/ir_actions.py,33,Your template should define email_from,Your template should define email_from,
+mail,code,addons/mail/models/mail_thread.py,967,alias %s does not accept unknown author,alias %s does not accept unknown author,
+mail,code,addons/mail/models/mail_thread.py,963,alias %s restricted to internal followers,alias %s restricted to internal followers,
+mail,model,"ir.model,name",mail.model_base_config_settings,base.config.settings,base.config.settings,
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,by,由,
+mail,model,"ir.ui.view,arch_db",mail.message_origin_link,created,created,
+mail,code,addons/mail/models/mail_thread.py,312,document,document,
+mail,code,addons/mail/static/src/xml/client_action.xml,11,enable desktop notifications,enable desktop notifications,openerp-web
+mail,code,addons/mail/static/src/js/followers.js,222,followers,關注者,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.message_origin_link,from:,from:,
+mail,model,"mail.channel,name",mail.channel_all_employees,general,general,
+mail,model,"ir.ui.view,arch_db",mail.message_origin_link,has been,has been,
+mail,model,"ir.model,name",mail.model_ir_actions_server,ir.actions.server,ir.actions.server,
+mail,model,"ir.model,name",mail.model_ir_autovacuum,ir.autovacuum,ir.autovacuum,
+mail,model,"ir.model,name",mail.model_mail_alias_mixin,mail.alias.mixin,mail.alias.mixin,
+mail,model,"ir.ui.view,arch_db",mail.mail_channel_view_form,members,members,
+mail,code,addons/mail/static/src/xml/client_action.xml,118,mention(s) marked as read.,mention(s) marked as read.,openerp-web
+mail,code,addons/mail/models/mail_thread.py,942,model %s does not accept document creation,model %s does not accept document creation,
+mail,code,addons/mail/models/mail_thread.py,937,model %s does not accept document update,model %s does not accept document update,
+mail,code,addons/mail/models/mail_thread.py,930,"model %s does not accept document update, fall back on document creation","model %s does not accept document update, fall back on document creation",
+mail,model,"ir.ui.view,arch_db",mail.message_origin_link,modified,modified,
+mail,model,"ir.ui.view,arch_db",mail.view_general_configuration_mail_alias_domain,mycompany.odoo.com,mycompany.odoo.com,
+mail,code,addons/mail/static/src/js/thread.js,20,now,now,openerp-web
+mail,code,addons/mail/static/src/xml/thread.xml,91,on,on,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.view_mail_form,on,on,
+mail,code,addons/mail/models/mail_thread.py,912,"posting a message without model should be with a null res_id (private message), received %s","posting a message without model should be with a null res_id (private message), received %s",
+mail,code,addons/mail/models/mail_thread.py,916,posting a message without model should be with a parent_id (private message),posting a message without model should be with a parent_id (private message),
+mail,model,"ir.model,name",mail.model_publisher_warranty_contract,publisher_warranty.contract,publisher_warranty.contract,
+mail,code,addons/mail/static/src/js/thread.js,16,read less,read less,openerp-web
+mail,code,addons/mail/static/src/js/thread.js,15,read more,read more,openerp-web
+mail,model,"ir.ui.view,arch_db",mail.email_template_preview_form,record:,record:,
+mail,code,addons/mail/models/mail_thread.py,934,"reply to missing document (%s,%s)","reply to missing document (%s,%s)",
+mail,code,addons/mail/models/mail_thread.py,927,"reply to missing document (%s,%s), fall back on new document creation","reply to missing document (%s,%s), fall back on new document creation",
+mail,code,addons/mail/models/mail_thread.py,912,resetting thread_id,resetting thread_id,
+mail,code,addons/mail/models/mail_thread.py,916,skipping,skipping,
+mail,code,addons/mail/models/mail_thread.py,934,skipping,skipping,
+mail,code,addons/mail/models/mail_thread.py,937,skipping,skipping,
+mail,code,addons/mail/models/mail_thread.py,942,skipping,skipping,
+mail,code,addons/mail/models/mail_thread.py,963,skipping,skipping,
+mail,code,addons/mail/models/mail_thread.py,967,skipping,skipping,
+mail,code,addons/mail/static/src/xml/chatter.xml,25,this document,本文件,openerp-web
+mail,code,addons/mail/models/mail_thread.py,905,unknown target model %s,unknown target model %s,
